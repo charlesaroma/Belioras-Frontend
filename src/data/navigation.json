@@ -1,0 +1,177 @@
+{
+  "items": [
+    {
+      "id": "new-arrivals",
+      "label": "NEW ARRIVALS",
+      "slug": "new-arrivals",
+      "url": "/new-arrivals",
+      "children": [
+        {
+          "id": "na-section-catalog",
+          "title": "New Arrivals",
+          "items": [
+            { "id": "na-1", "label": "New Arrivals Catalog", "slug": "new-arrivals/catalog", "url": "/new-arrivals/catalog" },
+            { "id": "na-2", "label": "Featured Collections", "slug": "new-arrivals/collections", "url": "/new-arrivals/collections" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop",
+      "label": "SHOP",
+      "slug": "shop",
+      "url": "/shop",
+      "children": [
+        {
+          "id": "shop-section-category",
+          "title": "Shop by Category",
+          "items": [
+            { "id": "sc-1", "label": "Mini Dresses",        "slug": "shop/category/mini-dresses",  "url": "/shop/category/mini-dresses" },
+            { "id": "sc-2", "label": "Midi Dresses",        "slug": "shop/category/midi-dresses",  "url": "/shop/category/midi-dresses" },
+            { "id": "sc-3", "label": "Maxi Dresses",        "slug": "shop/category/maxi-dresses",  "url": "/shop/category/maxi-dresses" },
+            { "id": "sc-4", "label": "Prom & Gala Dresses", "slug": "shop/category/prom-gala",     "url": "/shop/category/prom-gala" },
+            { "id": "sc-5", "label": "Jumpsuits",           "slug": "shop/category/jumpsuits",     "url": "/shop/category/jumpsuits" },
+            { "id": "sc-6", "label": "Two-Piece Sets",      "slug": "shop/category/two-piece-sets","url": "/shop/category/two-piece-sets" },
+            { "id": "sc-7", "label": "Formal Wear",         "slug": "shop/category/formal-wear",   "url": "/shop/category/formal-wear" },
+            { "id": "sc-8", "label": "Coats & Jackets",     "slug": "shop/category/coats-jackets", "url": "/shop/category/coats-jackets" }
+          ]
+        },
+        {
+          "id": "shop-section-occasion",
+          "title": "Shop by Occasion",
+          "items": [
+            { "id": "so-1", "label": "Birthday Dresses",       "slug": "shop/occasion/birthday",      "url": "/shop/occasion/birthday" },
+            { "id": "so-2", "label": "Party Dresses",          "slug": "shop/occasion/party",         "url": "/shop/occasion/party" },
+            { "id": "so-3", "label": "Cocktail Dresses",       "slug": "shop/occasion/cocktail",      "url": "/shop/occasion/cocktail" },
+            { "id": "so-4", "label": "Wedding Guest Dresses",  "slug": "shop/occasion/wedding-guest", "url": "/shop/occasion/wedding-guest" },
+            { "id": "so-5", "label": "Evening Dresses",        "slug": "shop/occasion/evening",       "url": "/shop/occasion/evening" },
+            { "id": "so-6", "label": "Gala Dresses",           "slug": "shop/occasion/gala",          "url": "/shop/occasion/gala" },
+            { "id": "so-7", "label": "Prom Dresses",           "slug": "shop/occasion/prom",          "url": "/shop/occasion/prom" },
+            { "id": "so-8", "label": "Formal Dresses",         "slug": "shop/occasion/formal",        "url": "/shop/occasion/formal" }
+          ]
+        },
+        {
+          "id": "shop-section-style",
+          "title": "Shop by Style",
+          "items": [
+            { "id": "ss-1", "label": "Bodycon Dresses",        "slug": "shop/style/bodycon",      "url": "/shop/style/bodycon" },
+            { "id": "ss-2", "label": "One-Shoulder Dresses",   "slug": "shop/style/one-shoulder", "url": "/shop/style/one-shoulder" },
+            { "id": "ss-3", "label": "Off-Shoulder Dresses",   "slug": "shop/style/off-shoulder", "url": "/shop/style/off-shoulder" },
+            { "id": "ss-4", "label": "Halter Neck Dresses",    "slug": "shop/style/halter-neck",  "url": "/shop/style/halter-neck" },
+            { "id": "ss-5", "label": "Long-Sleeve Dresses",    "slug": "shop/style/long-sleeve",  "url": "/shop/style/long-sleeve" },
+            { "id": "ss-6", "label": "Backless Dresses",       "slug": "shop/style/backless",     "url": "/shop/style/backless" },
+            { "id": "ss-7", "label": "Embellished Dresses",    "slug": "shop/style/embellished",  "url": "/shop/style/embellished" },
+            { "id": "ss-8", "label": "Corset Dresses",         "slug": "shop/style/corset",       "url": "/shop/style/corset" }
+          ]
+        },
+        {
+          "id": "shop-section-fabric",
+          "title": "Shop by Fabric",
+          "items": [
+            { "id": "sf-1", "label": "Satin Dresses",   "slug": "shop/fabric/satin",   "url": "/shop/fabric/satin" },
+            { "id": "sf-2", "label": "Lace Dresses",    "slug": "shop/fabric/lace",    "url": "/shop/fabric/lace" },
+            { "id": "sf-3", "label": "Sequin Dresses",  "slug": "shop/fabric/sequin",  "url": "/shop/fabric/sequin" },
+            { "id": "sf-4", "label": "Mesh Dresses",    "slug": "shop/fabric/mesh",    "url": "/shop/fabric/mesh" },
+            { "id": "sf-5", "label": "Velvet Dresses",  "slug": "shop/fabric/velvet",  "url": "/shop/fabric/velvet" },
+            { "id": "sf-6", "label": "Chiffon Dresses", "slug": "shop/fabric/chiffon", "url": "/shop/fabric/chiffon" },
+            { "id": "sf-7", "label": "Bandage Dresses", "slug": "shop/fabric/bandage", "url": "/shop/fabric/bandage" }
+          ]
+        },
+        {
+          "id": "shop-section-color",
+          "title": "Shop by Color",
+          "items": [
+            { "id": "sk-1",  "label": "Black Dresses",      "slug": "shop/color/black",      "url": "/shop/color/black" },
+            { "id": "sk-2",  "label": "White Dresses",      "slug": "shop/color/white",      "url": "/shop/color/white" },
+            { "id": "sk-3",  "label": "Red Dresses",        "slug": "shop/color/red",        "url": "/shop/color/red" },
+            { "id": "sk-4",  "label": "Burgundy Dresses",   "slug": "shop/color/burgundy",   "url": "/shop/color/burgundy" },
+            { "id": "sk-5",  "label": "Blue Dresses",       "slug": "shop/color/blue",       "url": "/shop/color/blue" },
+            { "id": "sk-6",  "label": "Green Dresses",      "slug": "shop/color/green",      "url": "/shop/color/green" },
+            { "id": "sk-7",  "label": "Pink Dresses",       "slug": "shop/color/pink",       "url": "/shop/color/pink" },
+            { "id": "sk-8",  "label": "Yellow Dresses",     "slug": "shop/color/yellow",     "url": "/shop/color/yellow" },
+            { "id": "sk-9",  "label": "Orange Dresses",     "slug": "shop/color/orange",     "url": "/shop/color/orange" },
+            { "id": "sk-10", "label": "Brown Dresses",      "slug": "shop/color/brown",      "url": "/shop/color/brown" },
+            { "id": "sk-11", "label": "Purple Dresses",     "slug": "shop/color/purple",     "url": "/shop/color/purple" },
+            { "id": "sk-12", "label": "Metallic Dresses",   "slug": "shop/color/metallic",   "url": "/shop/color/metallic" },
+            { "id": "sk-13", "label": "Monochrome Styles",  "slug": "shop/color/monochrome", "url": "/shop/color/monochrome" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dresses",
+      "label": "DRESSES",
+      "slug": "dresses",
+      "url": "/dresses",
+      "children": [
+        {
+          "id": "dresses-section-main",
+          "title": "Dresses",
+          "items": [
+            { "id": "dr-1", "label": "Mini, Midi & Maxi Dresses", "slug": "dresses/mini-midi-maxi",  "url": "/dresses/mini-midi-maxi" },
+            { "id": "dr-2", "label": "Party & Evening Wear",      "slug": "dresses/party-evening",   "url": "/dresses/party-evening" },
+            { "id": "dr-3", "label": "Formal & Gala Gowns",       "slug": "dresses/formal-gala",     "url": "/dresses/formal-gala" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hair",
+      "label": "HAIR",
+      "slug": "hair",
+      "url": "/hair",
+      "children": [
+        {
+          "id": "hair-section-wigs",
+          "title": "Wigs",
+          "items": [
+            { "id": "hw-1", "label": "Straight Wigs", "slug": "hair/wigs/straight", "url": "/hair/wigs/straight" },
+            { "id": "hw-2", "label": "Curly Wigs",    "slug": "hair/wigs/curly",    "url": "/hair/wigs/curly" },
+            { "id": "hw-3", "label": "Wavy Wigs",     "slug": "hair/wigs/wavy",     "url": "/hair/wigs/wavy" },
+            { "id": "hw-4", "label": "Bouncy Wigs",   "slug": "hair/wigs/bouncy",   "url": "/hair/wigs/bouncy" },
+            { "id": "hw-5", "label": "Braided Wigs",  "slug": "hair/wigs/braided",  "url": "/hair/wigs/braided" },
+            { "id": "hw-6", "label": "Short Wigs",    "slug": "hair/wigs/short",    "url": "/hair/wigs/short" },
+            { "id": "hw-7", "label": "Kinky Wigs",    "slug": "hair/wigs/kinky",    "url": "/hair/wigs/kinky" },
+            { "id": "hw-8", "label": "Yaky Wigs",     "slug": "hair/wigs/yaky",     "url": "/hair/wigs/yaky" },
+            { "id": "hw-9", "label": "Locs",          "slug": "hair/wigs/locs",     "url": "/hair/wigs/locs" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "accessories",
+      "label": "ACCESSORIES",
+      "slug": "accessories",
+      "url": "/accessories",
+      "children": [
+        {
+          "id": "acc-section-shoes",
+          "title": "Shoes",
+          "items": [
+            { "id": "as-1", "label": "Heels", "slug": "accessories/shoes/heels", "url": "/accessories/shoes/heels" }
+          ]
+        },
+        {
+          "id": "acc-section-bags",
+          "title": "Bags",
+          "items": [
+            { "id": "ab-1", "label": "Handbags",      "slug": "accessories/bags/handbags", "url": "/accessories/bags/handbags" },
+            { "id": "ab-2", "label": "Clutch Bags",   "slug": "accessories/bags/clutch",   "url": "/accessories/bags/clutch" },
+            { "id": "ab-3", "label": "Shoulder Bags", "slug": "accessories/bags/shoulder", "url": "/accessories/bags/shoulder" },
+            { "id": "ab-4", "label": "Mini Bags",     "slug": "accessories/bags/mini",     "url": "/accessories/bags/mini" }
+          ]
+        },
+        {
+          "id": "acc-section-jewelry",
+          "title": "Jewelry & Accessories",
+          "items": [
+            { "id": "aj-1", "label": "Earrings",             "slug": "accessories/jewelry/earrings",  "url": "/accessories/jewelry/earrings" },
+            { "id": "aj-2", "label": "Necklaces",            "slug": "accessories/jewelry/necklaces", "url": "/accessories/jewelry/necklaces" },
+            { "id": "aj-3", "label": "Bracelets & Bangles",  "slug": "accessories/jewelry/bracelets", "url": "/accessories/jewelry/bracelets" },
+            { "id": "aj-4", "label": "Rings",                "slug": "accessories/jewelry/rings",     "url": "/accessories/jewelry/rings" }
+          ]
+        }
+      ]
+    }
+  ]
+}

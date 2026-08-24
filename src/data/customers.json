@@ -1,0 +1,10 @@
+{
+  "customers": [
+    { "id": "cus-001", "name": "Camille Laurent",  "email": "camille.laurent@example.com",  "joined": "2025-11-03", "ordersCount": 2, "totalSpent": 835 },
+    { "id": "cus-002", "name": "Poppy Whitmore",   "email": "poppy.whitmore@example.com",   "joined": "2026-01-19", "ordersCount": 2, "totalSpent": 740 },
+    { "id": "cus-003", "name": "Amara Okafor",     "email": "amara.okafor@example.com",     "joined": "2026-03-27", "ordersCount": 1, "totalSpent": 465 },
+    { "id": "cus-004", "name": "Giulia Ferrante",  "email": "giulia.ferrante@example.com",  "joined": "2026-02-08", "ordersCount": 1, "totalSpent": 430 },
+    { "id": "cus-005", "name": "Lucía Márquez",    "email": "lucia.marquez@example.com",    "joined": "2026-06-30", "ordersCount": 1, "totalSpent": 0 },
+    { "id": "cus-006", "name": "Lena Hoffmann",    "email": "lena.hoffmann@example.com",    "joined": "2026-07-15", "ordersCount": 1, "totalSpent": 220 }
+  ]
+}

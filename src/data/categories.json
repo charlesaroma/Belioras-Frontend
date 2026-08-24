@@ -1,0 +1,55 @@
+{
+  "categories": [
+    { "slug": "new-arrivals",  "parent": null },
+    { "slug": "shop",          "parent": null },
+    { "slug": "dresses",       "parent": null },
+    { "slug": "hair",          "parent": null },
+    { "slug": "accessories",   "parent": null },
+
+    { "slug": "mini-dresses",    "parent": "shop", "dimension": "length" },
+    { "slug": "midi-dresses",    "parent": "shop", "dimension": "length" },
+    { "slug": "maxi-dresses",    "parent": "shop", "dimension": "length" },
+    { "slug": "prom-gala",       "parent": "shop", "dimension": "occasion" },
+    { "slug": "jumpsuits",       "parent": "shop", "dimension": "category" },
+    { "slug": "two-piece-sets",  "parent": "shop", "dimension": "category" },
+    { "slug": "formal-wear",     "parent": "shop", "dimension": "occasion" },
+    { "slug": "coats-jackets",   "parent": "shop", "dimension": "category" },
+
+    { "slug": "wigs",      "parent": "hair", "dimension": "category" },
+
+    { "slug": "heels",     "parent": "accessories", "dimension": "category" },
+    { "slug": "handbags",  "parent": "accessories", "dimension": "category" },
+    { "slug": "clutch",    "parent": "accessories", "dimension": "category" },
+    { "slug": "shoulder",  "parent": "accessories", "dimension": "category" },
+    { "slug": "mini",      "parent": "accessories", "dimension": "category" },
+    { "slug": "earrings",  "parent": "accessories", "dimension": "category" },
+    { "slug": "necklaces", "parent": "accessories", "dimension": "category" },
+    { "slug": "bracelets", "parent": "accessories", "dimension": "category" },
+    { "slug": "rings",     "parent": "accessories", "dimension": "category" }
+  ],
+  "labels": {
+    "new-arrivals":  { "en": "New Arrivals",        "fr": "Nouveautés" },
+    "shop":          { "en": "Shop",                "fr": "Boutique" },
+    "dresses":       { "en": "Dresses",             "fr": "Robes" },
+    "hair":          { "en": "Hair",                "fr": "Cheveux" },
+    "accessories":   { "en": "Accessories",         "fr": "Accessoires" },
+    "mini-dresses":  { "en": "Mini Dresses",        "fr": "Robes Courtes" },
+    "midi-dresses":  { "en": "Midi Dresses",        "fr": "Robes Midi" },
+    "maxi-dresses":  { "en": "Maxi Dresses",        "fr": "Robes Longues" },
+    "prom-gala":     { "en": "Prom & Gala Dresses", "fr": "Robes de Bal & Gala" },
+    "jumpsuits":     { "en": "Jumpsuits",           "fr": "Combinaisons" },
+    "two-piece-sets":{"en": "Two-Piece Sets",       "fr": "Ensembles Deux Pièces" },
+    "formal-wear":   { "en": "Formal Wear",         "fr": "Tenue de Cérémonie" },
+    "coats-jackets": { "en": "Coats & Jackets",     "fr": "Manteaux & Vestes" },
+    "wigs":          { "en": "Wigs",                "fr": "Perruques" },
+    "heels":         { "en": "Heels",               "fr": "Talons" },
+    "handbags":      { "en": "Handbags",            "fr": "Sacs à Main" },
+    "clutch":        { "en": "Clutch Bags",         "fr": "Pochettes" },
+    "shoulder":      { "en": "Shoulder Bags",       "fr": "Sacs Portés Épaule" },
+    "mini":          { "en": "Mini Bags",           "fr": "Mini Sacs" },
+    "earrings":      { "en": "Earrings",            "fr": "Boucles d'Oreilles" },
+    "necklaces":     { "en": "Necklaces",           "fr": "Colliers" },
+    "bracelets":     { "en": "Bracelets & Bangles", "fr": "Bracelets" },
+    "rings":         { "en": "Rings",               "fr": "Bagues" }
+  }
+}

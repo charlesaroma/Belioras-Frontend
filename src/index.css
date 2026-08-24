@@ -93,3 +93,26 @@
   --font-sans:    "Inter", sans-serif;
   --font-mono:    "Fira Code", ui-monospace, "SFMono-Regular", monospace;
 }
+
+/* BASE */
+@layer base {
+  body {
+    @apply bg-ivory-50 font-sans text-espresso-600 antialiased;
+  }
+  ::selection {
+    background-color: var(--color-gold-300);
+    color: var(--color-espresso-800);
+  }
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

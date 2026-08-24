@@ -1,0 +1,98 @@
+{
+  "orders": [
+    {
+      "id": "ORD-1042",
+      "customerId": "cus-001",
+      "date": "2026-08-21",
+      "status": "processing",
+      "items": [
+        { "productId": "bld-001", "name": "Ivory Silk Slip Gown", "size": "m", "color": "white", "qty": 1, "price": 290 },
+        { "productId": "bjw-701", "name": "Gilded Drop Earrings", "size": "one-size", "color": "yellow", "qty": 1, "price": 85 }
+      ],
+      "total": 375,
+      "shipping": { "method": "Express", "address": "12 Rue de Sévigné, 75004 Paris, France" }
+    },
+    {
+      "id": "ORD-1041",
+      "customerId": "cus-002",
+      "date": "2026-08-20",
+      "status": "shipped",
+      "items": [
+        { "productId": "bld-005", "name": "Poudre Tulle Prom Dress", "size": "s", "color": "pink", "qty": 1, "price": 420 }
+      ],
+      "total": 420,
+      "shipping": { "method": "Standard", "address": "88 Kings Road, London SW3 4PX, United Kingdom" }
+    },
+    {
+      "id": "ORD-1040",
+      "customerId": "cus-003",
+      "date": "2026-08-18",
+      "status": "delivered",
+      "items": [
+        { "productId": "bwg-402", "name": "Deep Curly 20\" Wig", "size": "one-size", "color": "black", "qty": 2, "price": 175 },
+        { "productId": "bbg-602", "name": "Crystal Clutch", "size": "one-size", "color": "metallic", "qty": 1, "price": 150 }
+      ],
+      "total": 500,
+      "shipping": { "method": "Express", "address": "45 Adeola Odeku St, Victoria Island, Lagos, Nigeria" }
+    },
+    {
+      "id": "ORD-1039",
+      "customerId": "cus-004",
+      "date": "2026-08-15",
+      "status": "delivered",
+      "items": [
+        { "productId": "blj-101", "name": "Camel Wool Coat", "size": "m", "color": "brown", "qty": 1, "price": 450 }
+      ],
+      "total": 450,
+      "shipping": { "method": "Standard", "address": "Via Montenapoleone 8, 20121 Milano, Italy" }
+    },
+    {
+      "id": "ORD-1038",
+      "customerId": "cus-001",
+      "date": "2026-07-30",
+      "status": "delivered",
+      "items": [
+        { "productId": "bld-007", "name": "Blush Off-Shoulder Midi", "size": "xs", "color": "pink", "qty": 1, "price": 230 },
+        { "productId": "bjw-702", "name": "Pearl Pendant Necklace", "size": "one-size", "color": "white", "qty": 1, "price": 120 },
+        { "productId": "bah-501", "name": "Pointed Patent Pump", "size": "eu37", "color": "black", "qty": 1, "price": 225 }
+      ],
+      "total": 575,
+      "shipping": { "method": "Express", "address": "12 Rue de Sévigné, 75004 Paris, France" }
+    },
+    {
+      "id": "ORD-1037",
+      "customerId": "cus-002",
+      "date": "2026-07-26",
+      "status": "cancelled",
+      "items": [
+        { "productId": "bld-004", "name": "Scarlet Gala Gown", "size": "l", "color": "red", "qty": 1, "price": 480 }
+      ],
+      "total": 0,
+      "shipping": { "method": "Standard", "address": "88 Kings Road, London SW3 4PX, United Kingdom" }
+    },
+    {
+      "id": "ORD-1036",
+      "customerId": "cus-006",
+      "date": "2026-07-19",
+      "status": "delivered",
+      "items": [
+        { "productId": "bpj-201", "name": "Tailored Crepe Jumpsuit", "size": "m", "color": "black", "qty": 1, "price": 220 }
+      ],
+      "total": 220,
+      "shipping": { "method": "Standard", "address": "Kurfürstendamm 21, 10719 Berlin, Germany" }
+    },
+    {
+      "id": "ORD-1035",
+      "customerId": "cus-005",
+      "date": "2026-08-22",
+      "status": "pending",
+      "items": [
+        { "productId": "bts-301", "name": "Sequin Two-Piece Set", "size": "s", "color": "metallic", "qty": 1, "price": 260 },
+        { "productId": "bah-502", "name": "Strappy Metallic Sandal Heel", "size": "eu38", "color": "metallic", "qty": 1, "price": 195 },
+        { "productId": "bbg-602", "name": "Crystal Clutch", "size": "one-size", "color": "metallic", "qty": 1, "price": 150 }
+      ],
+      "total": 605,
+      "shipping": { "method": "Express", "address": "Calle de Serrano 48, 28001 Madrid, Spain" }
+    }
+  ]
+}

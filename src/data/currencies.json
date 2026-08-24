@@ -1,0 +1,18 @@
+{
+  "baseCurrency": "EUR",
+  "rates": {
+    "EUR": 1.0,
+    "USD": 1.09,
+    "GBP": 0.85
+  },
+  "symbols": {
+    "EUR": "€",
+    "USD": "$",
+    "GBP": "£"
+  },
+  "currencies": [
+    { "code": "EUR", "symbol": "€", "rate": 1.0,  "label": { "en": "Euro (EUR)",   "fr": "Euro (EUR)" } },
+    { "code": "USD", "symbol": "$", "rate": 1.09, "label": { "en": "US Dollar (USD)", "fr": "Dollar US (USD)" } },
+    { "code": "GBP", "symbol": "£", "rate": 0.85, "label": { "en": "British Pound (GBP)", "fr": "Livre Sterling (GBP)" } }
+  ]
+}

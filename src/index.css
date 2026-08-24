@@ -1,0 +1,95 @@
+/*
+   FONTS — via Google Fonts
+   GFS Didot stands in for Didot; Inter stands in for Helvetica Neue;
+   Fira Code for mono/SKU use. All free, no licensing needed.
+*/
+@import url('https://fonts.googleapis.com/css2?family=GFS+Didot&family=Inter:wght@400;500&family=Fira+Code:wght@400&display=swap');
+@import "tailwindcss";
+
+/* 
+   THEME — color palette + font families
+*/
+@theme {
+  /* Primary — Beliora Gold */
+  --color-gold-50:  #FBF7F0;
+  --color-gold-100: #F3E7D0;
+  --color-gold-200: #EEDBB9;
+  --color-gold-300: #E6CB98;
+  --color-gold-400: #E1C185;
+  --color-gold-500: #D9B166;
+  --color-gold-600: #C5A15D;
+  --color-gold-700: #9A7E48;
+  --color-gold-800: #776138;
+  --color-gold-900: #5B4A2B;
+
+  /* Secondary — Heritage Brown */
+  --color-brown-50:  #F1EDE8;
+  --color-brown-100: #D4C7B8;
+  --color-brown-200: #BFAC96;
+  --color-brown-300: #A18666;
+  --color-brown-400: #8F6F48;
+  --color-brown-500: #734B1A;
+  --color-brown-600: #694418;
+  --color-brown-700: #523512;
+  --color-brown-800: #3F290E;
+  --color-brown-900: #30200B;
+
+  /* Accent I — Champagne Gold */
+  --color-champagne-50:  #FEFBF2;
+  --color-champagne-100: #FBF2D8;
+  --color-champagne-200: #F9ECC5;
+  --color-champagne-300: #F6E4AA;
+  --color-champagne-400: #F5DE99;
+  --color-champagne-500: #F2D680;
+  --color-champagne-600: #DCC374;
+  --color-champagne-700: #AC985B;
+  --color-champagne-800: #857646;
+  --color-champagne-900: #665A36;
+
+  /* Accent II — Burnt Umber */
+  --color-umber-50:  #EEE9E6;
+  --color-umber-100: #CCBAB1;
+  --color-umber-200: #B3998B;
+  --color-umber-300: #906B55;
+  --color-umber-400: #7A4E35;
+  --color-umber-500: #592202;
+  --color-umber-600: #511F02;
+  --color-umber-700: #3F1801;
+  --color-umber-800: #311301;
+  --color-umber-900: #250E01;
+
+  /* Base Light — Soft Ivory */
+  --color-ivory-50:  #FEFEFE;
+  --color-ivory-100: #FBFBFB;
+  --color-ivory-200: #F9F9F9;
+  --color-ivory-300: #F6F6F6;
+  --color-ivory-400: #F5F5F5;
+  --color-ivory-500: #F2F2F2;
+  --color-ivory-600: #DCDCDC;
+  --color-ivory-700: #ACACAC;
+  --color-ivory-800: #858585;
+  --color-ivory-900: #666666;
+
+  /* Base Dark — Deep Espresso */
+  --color-espresso-50:  #E7E6E6;
+  --color-espresso-100: #B6B2B0;
+  --color-espresso-200: #928D8A;
+  --color-espresso-300: #605954;
+  --color-espresso-400: #413933;
+  --color-espresso-500: #120700;
+  --color-espresso-600: #100600;
+  --color-espresso-700: #0D0500;
+  --color-espresso-800: #0A0400;
+  --color-espresso-900: #080300;
+
+  /* Functional / status */
+  --color-success: #166534;
+  --color-warning: #CA8A04;
+  --color-error:   #B91C1C;
+  --color-info:    #0E7490;
+
+  /* Fonts */
+  --font-display: "GFS Didot", serif;
+  --font-sans:    "Inter", sans-serif;
+  --font-mono:    "Fira Code", ui-monospace, "SFMono-Regular", monospace;
+}

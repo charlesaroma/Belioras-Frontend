@@ -1,19 +1,14 @@
 import { Link } from 'react-router-dom';
 import { useCurrency } from '../../context/CurrencyContext';
 import { useWishlist } from '../../context/WishlistContext';
-import { useAdmin } from '../../context/AdminContext';
 
+/* Matches the SearchBar result card: image, then name and price
+   stacked below. No colour dots. */
 export default function ProductCard({ product }) {
   const { format } = useCurrency();
   const wishlist = useWishlist();
-  const { attributes } = useAdmin();
   const saved = wishlist.has(product.id);
   const compareAt = product.compareAtPrice && product.compareAtPrice > product.price ? product.compareAtPrice : null;
-
-  const swatches = (product.colors || []).slice(0, 4).map((id) => {
-    const c = attributes.color.values.find((v) => v.id === id) || {};
-    return { id, hex: c.hex || '#CCC', name: c.name || id };
-  });
 
   return (
     <article className="group relative">
@@ -58,24 +53,16 @@ export default function ProductCard({ product }) {
         </svg>
       </button>
 
-      <div className="pt-4">
-        <div className="flex items-start justify-between gap-3">
-          <Link to={`/product/${product.slug}`} className="flex-1">
-            <h3 className="font-display text-base leading-snug text-espresso-700 transition-colors group-hover:text-gold-700">
-              {product.name}
-            </h3>
-          </Link>
-          <div className="text-right">
-            <p className="whitespace-nowrap text-sm text-espresso-600">{format(product.price)}</p>
-            {compareAt && <p className="whitespace-nowrap text-xs text-espresso-300 line-through">{format(compareAt)}</p>}
-          </div>
-        </div>
-        {swatches.length > 0 && (
-          <div className="mt-2.5 flex items-center gap-1.5">
-            {swatches.map((s) => (
-              <span key={s.id} title={s.name} className="h-3.5 w-3.5 rounded-full border border-ivory-700" style={{ backgroundColor: s.hex }} />
-            ))}
-          </div>
+      {/* Name + price stacked below the image */}
+      <div className="mt-3">
+        <Link to={`/product/${product.slug}`}>
+          <h3 className="font-sans text-sm leading-snug text-espresso-700 transition-colors group-hover:text-gold-700">
+            {product.name}
+          </h3>
+        </Link>
+        <p className="mt-1 text-sm text-espresso-400">{format(product.price)}</p>
+        {compareAt && (
+          <p className="text-xs text-espresso-300 line-through">{format(compareAt)}</p>
         )}
       </div>
     </article>

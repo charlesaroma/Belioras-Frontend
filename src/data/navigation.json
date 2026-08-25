@@ -1,10 +1,16 @@
 {
+  "rev": 3,
   "items": [
     {
       "id": "new-arrivals",
-      "label": "NEW ARRIVALS",
+      "label": "WHAT'S NEW",
       "slug": "new-arrivals",
       "url": "/new-arrivals",
+      "nav": "left",
+      "tiles": [
+        { "id": "na-tile-1", "title": "New In Dresses", "url": "/shop/category/mini-dresses", "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=900&auto=format&fit=crop" },
+        { "id": "na-tile-2", "title": "New In Accessories", "url": "/accessories", "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=900&auto=format&fit=crop" }
+      ],
       "children": [
         {
           "id": "na-section-catalog",
@@ -21,6 +27,11 @@
       "label": "SHOP",
       "slug": "shop",
       "url": "/shop",
+      "nav": "left",
+      "tiles": [
+        { "id": "shop-tile-1", "title": "Prom & Gala", "url": "/shop/category/prom-gala", "image": "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=900&auto=format&fit=crop" },
+        { "id": "shop-tile-2", "title": "Shop by Colour", "url": "/shop/color/black", "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=900&auto=format&fit=crop" }
+      ],
       "children": [
         {
           "id": "shop-section-category",
@@ -99,20 +110,54 @@
       ]
     },
     {
+      "id": "best-sellers",
+      "label": "BEST SELLERS",
+      "slug": "best-sellers",
+      "url": "/best-sellers",
+      "nav": "left"
+    },
+    {
+      "id": "occasion",
+      "label": "OCCASION",
+      "slug": "occasion",
+      "url": "/shop",
+      "nav": "right",
+      "tiles": [
+        { "id": "occ-tile-1", "title": "Wedding Guest", "url": "/shop/occasion/wedding-guest", "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=900&auto=format&fit=crop" },
+        { "id": "occ-tile-2", "title": "Prom Night", "url": "/shop/occasion/prom", "image": "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?q=80&w=900&auto=format&fit=crop" }
+      ],
+      "children": [
+        {
+          "id": "occ-section-main",
+          "title": "Shop by Occasion",
+          "items": [
+            { "id": "oc-1", "label": "Birthday Dresses",      "slug": "shop/occasion/birthday",      "url": "/shop/occasion/birthday" },
+            { "id": "oc-2", "label": "Party Dresses",          "slug": "shop/occasion/party",         "url": "/shop/occasion/party" },
+            { "id": "oc-3", "label": "Cocktail Dresses",       "slug": "shop/occasion/cocktail",      "url": "/shop/occasion/cocktail" },
+            { "id": "oc-4", "label": "Wedding Guest Dresses",  "slug": "shop/occasion/wedding-guest", "url": "/shop/occasion/wedding-guest" },
+            { "id": "oc-5", "label": "Evening Dresses",        "slug": "shop/occasion/evening",       "url": "/shop/occasion/evening" },
+            { "id": "oc-6", "label": "Gala Dresses",           "slug": "shop/occasion/gala",          "url": "/shop/occasion/gala" },
+            { "id": "oc-7", "label": "Prom Dresses",           "slug": "shop/occasion/prom",          "url": "/shop/occasion/prom" },
+            { "id": "oc-8", "label": "Formal Dresses",         "slug": "shop/occasion/formal",        "url": "/shop/occasion/formal" }
+          ]
+        }
+      ]
+    },
+    {
       "id": "dresses",
       "label": "DRESSES",
       "slug": "dresses",
       "url": "/dresses",
+      "nav": "right",
+      "tiles": [
+        { "id": "dress-tile-1", "title": "Mini Dresses", "url": "/shop/category/mini-dresses", "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=900&auto=format&fit=crop" },
+        { "id": "dress-tile-2", "title": "Prom & Gala", "url": "/shop/category/prom-gala", "image": "https://images.unsplash.com/photo-1492106087820-71f1a00d2b11?q=80&w=900&auto=format&fit=crop" }
+      ],
       "children": [
-        {
-          "id": "dresses-section-main",
-          "title": "Dresses",
-          "items": [
-            { "id": "dr-1", "label": "Mini, Midi & Maxi Dresses", "slug": "dresses/mini-midi-maxi",  "url": "/dresses/mini-midi-maxi" },
-            { "id": "dr-2", "label": "Party & Evening Wear",      "slug": "dresses/party-evening",   "url": "/dresses/party-evening" },
-            { "id": "dr-3", "label": "Formal & Gala Gowns",       "slug": "dresses/formal-gala",     "url": "/dresses/formal-gala" }
-          ]
-        }
+        { "id": "dr-mini",      "label": "Mini Dresses",       "slug": "shop/category/mini-dresses", "url": "/shop/category/mini-dresses" },
+        { "id": "dr-midi",      "label": "Midi Dresses",       "slug": "shop/category/midi-dresses", "url": "/shop/category/midi-dresses" },
+        { "id": "dr-maxi",      "label": "Maxi Dresses",       "slug": "shop/category/maxi-dresses", "url": "/shop/category/maxi-dresses" },
+        { "id": "dr-prom-gala", "label": "Prom & Gala Dresses","slug": "shop/category/prom-gala",    "url": "/shop/category/prom-gala" }
       ]
     },
     {

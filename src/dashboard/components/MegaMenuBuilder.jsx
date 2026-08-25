@@ -13,19 +13,42 @@ function toUniform(items) {
     if (Array.isArray(n.items)) children = n.items; // section node
     else if (Array.isArray(n.children)) children = n.children;
     const label = typeof n.label === 'string' ? n.label : n.title || '';
-    return { id: n.id, label, url: n.url || '', children: toUniform(children) };
+    // Preserve storefront-only fields (nav position, tiles, slug)
+    return { ...pick(n, ['nav', 'tiles', 'slug']), id: n.id, label, url: n.url || '', children: toUniform(children) };
   });
+}
+
+function pick(obj = {}, keys = []) {
+  return keys.reduce((acc, k) => (obj[k] !== undefined ? { ...acc, [k]: obj[k] } : acc), {});
 }
 
 function fromUniform(nodes) {
   return nodes.map((top) => ({
+    ...pick(top, ['nav', 'tiles', 'slug']),
     id: top.id,
     label: top.label,
     url: top.url,
+    // Child may be a section (has sub-children) or a bare link
     children: top.children.map((sec) =>
       sec.children.length
-        ? { id: sec.id, title: sec.label, items: sec.children.map((c) => ({ id: c.id, label: c.label, slug: (c.url || '').replace(/^\//, '') })) }
-        : { id: sec.id, label: sec.label, slug: (sec.url || '').replace(/^\//, '') },
+        ? {
+            id: sec.id,
+            title: sec.label,
+            items: sec.children.map((c) => ({
+              ...pick(c, ['nav', 'tiles', 'slug']),
+              id: c.id,
+              label: c.label,
+              slug: (c.url || c.slug || '').replace(/^\//, ''),
+              url: c.url || `/${(c.slug || '').replace(/^\//, '')}`,
+            })),
+          }
+        : {
+            ...pick(sec, ['nav', 'tiles']),
+            id: sec.id,
+            label: sec.label,
+            slug: (sec.url || sec.slug || '').replace(/^\//, ''),
+            url: sec.url || `/${(sec.slug || '').replace(/^\//, '')}`,
+          },
     ),
   }));
 }

@@ -26,9 +26,6 @@ export function resolveNavTokens(slug) {
     return [`color:${third}`];
   }
 
-  if (slug === 'dresses/mini-midi-maxi') return ['cat:dresses'];
-  if (slug === 'dresses/party-evening') return ['occ:party', 'occ:evening'];
-  if (slug === 'dresses/formal-gala') return ['occ:gala', 'occ:formal', 'occ:prom'];
   if (head === 'dresses') return ['cat:dresses'];
 
   if (head === 'hair') {

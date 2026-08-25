@@ -12,10 +12,34 @@ const SEED = {
   orders: DATA.orders,
 };
 
+/*
+  Navigation is structural: when the JSON gains new items or new item
+  fields (nav position, tiles, children shape), a stale localStorage
+  copy would hide or resurrect old structures forever. The JSON carries
+  a top-level `rev` marker — bump it on every hand-edit of navigation.json.
+  Rev mismatch → stored navigation is discarded wholesale; matching rev →
+  per-item admin edits (label/url/children) are preserved.
+*/
+function hydrateNavigation(freshNav, storedNav) {
+  if (!storedNav || storedNav.rev !== freshNav.rev) {
+    return { rev: freshNav.rev, items: freshNav.items };
+  }
+  const storedById = new Map((storedNav.items || []).map((i) => [i.id, i]));
+  return {
+    rev: freshNav.rev,
+    items: freshNav.items.map((fresh) => {
+      const saved = storedById.get(fresh.id);
+      return saved ? { ...fresh, ...saved, tiles: saved.tiles ?? fresh.tiles } : fresh;
+    }),
+  };
+}
+
 export function AdminProvider({ children }) {
-  const [state, setState] = useState(() =>
-    loadJSON(STORAGE_KEYS.admin, { ...SEED, activity: [] }),
-  );
+  const [state, setState] = useState(() => {
+    const stored = loadJSON(STORAGE_KEYS.admin, null);
+    if (!stored) return { ...SEED, activity: [] };
+    return { ...stored, navigation: hydrateNavigation(DATA.navigation, stored.navigation) };
+  });
 
   useEffect(() => {
     saveJSON(STORAGE_KEYS.admin, state);
@@ -124,7 +148,8 @@ export function AdminProvider({ children }) {
   /* ---------- Navigation tree ---------- */
   const updateNavigation = useCallback(
     (items) => {
-      setState((s) => ({ ...s, navigation: { items } }));
+      // Preserve the rev marker so builder saves don't self-invalidate
+      setState((s) => ({ ...s, navigation: { rev: s.navigation?.rev ?? DATA.navigation.rev, items } }));
       logActivity('Mega menu structure saved');
     },
     [logActivity],

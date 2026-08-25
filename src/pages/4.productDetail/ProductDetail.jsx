@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import ProductGallery from './sections/ProductGallery';
 import ColorSelector from '../../components/product/ColorSelector';
 import SizeSelector from '../../components/product/SizeSelector';
@@ -23,6 +24,7 @@ const SIZE_TABLE = [
 
 export default function ProductDetail() {
   const { slug } = useParams();
+  const navigate = useNavigate();
   const { products } = useAdmin();
   const cart = useCart();
   const wishlist = useWishlist();
@@ -78,6 +80,15 @@ export default function ProductDetail() {
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-12">
+      {/* Back */}
+      <button
+        onClick={() => navigate(-1)}
+        className="mb-6 inline-flex items-center gap-1.5 text-[11px] uppercase tracking-widest text-espresso-400 transition-colors hover:text-espresso-700"
+      >
+        <KeyboardBackspaceIcon sx={{ fontSize: 16 }} />
+        Back
+      </button>
+
       <nav className="mb-8 text-[11px] uppercase tracking-widest text-espresso-300">
         <Link to="/" className="hover:text-espresso-600">Home</Link> ·{' '}
         <span className="text-espresso-500">{product.name}</span>

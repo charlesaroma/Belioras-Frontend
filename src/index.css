@@ -92,6 +92,17 @@
   --font-display: "GFS Didot", serif;
   --font-sans:    "Inter", sans-serif;
   --font-mono:    "Fira Code", ui-monospace, "SFMono-Regular", monospace;
+
+  /*
+    BREAKPOINTS — device tiers
+    Base styles (no prefix) apply mobile-first from 0px up — no xs/mbl
+    tier needed below `sm`; use clamp() for fluid sizing within phones
+    instead of adding more breakpoints. sm/md/lg kept at Tailwind
+    defaults (640/768/1024) — they already map cleanly to phone-landscape
+    / tablet-portrait / tablet-landscape+small-laptop.
+  */
+  --breakpoint-xl:  1440px; /* Laptop / desktop — matches Figma frame width */
+  --breakpoint-2xl: 1920px; /* Large desktop — most common big-monitor width */
 }
 
 /* BASE */
@@ -115,4 +126,12 @@
   &::-webkit-scrollbar {
     display: none;
   }
+}
+
+/* Constrains content on very large monitors instead of stretching
+   edge-to-edge; pair with mx-auto. Adjust max-width to taste once
+   real layouts are in place. */
+@utility container-luxe {
+  max-width: 1800px;
+  margin-inline: auto;
 }

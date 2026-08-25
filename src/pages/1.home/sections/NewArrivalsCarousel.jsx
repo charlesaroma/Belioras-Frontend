@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import ProductCard from '../product/ProductCard';
-import { useAdmin } from '../../context/AdminContext';
-import { useLanguage } from '../../context/LanguageContext';
+import ProductCard from '../../../components/product/ProductCard';
+import { useAdmin } from '../../../context/AdminContext';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export default function NewArrivalsCarousel() {
   const { products } = useAdmin();

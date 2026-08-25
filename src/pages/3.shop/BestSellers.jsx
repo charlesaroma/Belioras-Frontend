@@ -1,4 +1,4 @@
-import CatalogView from './CatalogView';
+import CatalogView from './sections/CatalogView';
 import { matchByTokens } from '../../services/productService';import { useAdmin } from '../../context/AdminContext';
 
 export default function BestSellers() {

@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Button from '../common/Button';
-import { useLanguage } from '../../context/LanguageContext';
+import Button from '../../../components/common/Button';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export default function HeroBanner() {
   const { t } = useLanguage();

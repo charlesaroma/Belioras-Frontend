@@ -1,13 +1,13 @@
 import { useMemo, useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
-import ProductGrid from '../../components/product/ProductGrid';
-import FilterDrawer from '../../components/filters/FilterDrawer';
-import GridViewSwitcher from '../../components/filters/GridViewSwitcher';
-import Button from '../../components/common/Button';
-import { useAdmin } from '../../context/AdminContext';
-import { useFilters } from '../../context/FilterContext';
-import { filterProducts, sortProducts, searchProducts } from '../../services/productService';
-import { useLanguage } from '../../context/LanguageContext';
+import ProductGrid from '../../../components/product/ProductGrid';
+import FilterDrawer from '../../../components/filters/FilterDrawer';
+import GridViewSwitcher from '../../../components/filters/GridViewSwitcher';
+import Button from '../../../components/common/Button';
+import { useAdmin } from '../../../context/AdminContext';
+import { useFilters } from '../../../context/FilterContext';
+import { filterProducts, sortProducts, searchProducts } from '../../../services/productService';
+import { useLanguage } from '../../../context/LanguageContext';
 
 const SORT_LABELS = {
   featured: 'filters.sortFeatured',

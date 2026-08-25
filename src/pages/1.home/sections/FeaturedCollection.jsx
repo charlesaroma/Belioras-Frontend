@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
-import ProductGrid from '../product/ProductGrid';
-import { useAdmin } from '../../context/AdminContext';
-import { useLanguage } from '../../context/LanguageContext';
+import ProductGrid from '../../../components/product/ProductGrid';
+import { useAdmin } from '../../../context/AdminContext';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export default function FeaturedCollection() {
   const { products } = useAdmin();

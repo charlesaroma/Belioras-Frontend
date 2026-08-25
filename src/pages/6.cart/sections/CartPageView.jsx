@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
-import CartItem from './CartItem';
-import EmptyCart from './EmptyCart';
-import CartSummary from './CartSummary';
-import Button from '../common/Button';
-import { useCart } from '../../context/CartContext';
-import { useLanguage } from '../../context/LanguageContext';
+import CartItem from '../../../components/cart/CartItem';
+import EmptyCart from '../../../components/cart/EmptyCart';
+import CartSummary from '../../../components/cart/CartSummary';
+import Button from '../../../components/common/Button';
+import { useCart } from '../../../context/CartContext';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export default function CartPageView() {
   const cart = useCart();

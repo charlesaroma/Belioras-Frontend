@@ -1,4 +1,4 @@
-import CatalogView from '../3.shop/CatalogView';
+import CatalogView from '../3.shop/sections/CatalogView';
 import { matchByTokens } from '../../services/productService';
 import { useAdmin } from '../../context/AdminContext';
 

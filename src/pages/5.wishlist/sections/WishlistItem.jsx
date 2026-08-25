@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import Button from '../common/Button';
-import { useCart } from '../../context/CartContext';
-import { useWishlist } from '../../context/WishlistContext';
-import { useCurrency } from '../../context/CurrencyContext';
-import { useLanguage } from '../../context/LanguageContext';
+import Button from '../../../components/common/Button';
+import { useCart } from '../../../context/CartContext';
+import { useWishlist } from '../../../context/WishlistContext';
+import { useCurrency } from '../../../context/CurrencyContext';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export default function WishlistItem({ product }) {
   const cart = useCart();

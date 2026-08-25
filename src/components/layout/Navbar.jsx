@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useDynamicNav } from '../../context/DynamicNavContext';
 import { useLanguage } from '../../context/LanguageContext';
 import { useCart } from '../../context/CartContext';
 import { useWishlist } from '../../context/WishlistContext';
+import SearchBar from './SearchBar';
 import MobileNav from './MobileNav';
 import DynamicMegaMenu from './DynamicMegaMenu';
 
@@ -21,17 +22,7 @@ export default function Navbar() {
   const cart = useCart();
   const wishlist = useWishlist();
   const { lang, t } = useLanguage();
-  const navigate = useNavigate();
-  const [searchOpen, setSearchOpen] = useState(false);
-  const [query, setQuery] = useState('');
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const submitSearch = (e) => {
-    e.preventDefault();
-    setSearchOpen(false);
-    setQuery('');
-    navigate(`/shop?q=${encodeURIComponent(query.trim())}`);
-  };
 
   const linkClass = ({ isActive }) =>
     `relative py-4 text-[11px] font-medium uppercase tracking-[0.25em] transition-colors duration-200 hover:text-espresso-700 ${
@@ -70,12 +61,7 @@ export default function Navbar() {
           </nav>
 
           <div className="flex shrink-0 items-center gap-5 text-espresso-600">
-            <button onClick={() => setSearchOpen((v) => !v)} aria-label={t('nav.search')} className="transition-colors hover:text-gold-600">
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <circle cx="11" cy="11" r="7" />
-                <path d="M20 20l-3.5-3.5" strokeLinecap="round" />
-              </svg>
-            </button>
+            <SearchBar />
             <Link to="/wishlist" aria-label={t('nav.wishlist')} className="relative transition-colors hover:text-gold-600">
               <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
                 <path d="M12 21s-7.5-4.6-9.6-9A5.4 5.4 0 0 1 12 6.6 5.4 5.4 0 0 1 21.6 12c-2.1 4.4-9.6 9-9.6 9z" strokeLinejoin="round" />
@@ -91,18 +77,6 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-
-        {searchOpen && (
-          <form onSubmit={submitSearch} className="border-t border-ivory-600 py-3">
-            <input
-              autoFocus
-              value={query}
-              onChange={(e) => setQuery(e.target.value)}
-              placeholder={t('common.searchPlaceholder')}
-              className="w-full bg-transparent px-2 py-1 text-sm tracking-wide outline-none placeholder:text-espresso-200"
-            />
-          </form>
-        )}
       </div>
 
       <div className="relative hidden md:block">

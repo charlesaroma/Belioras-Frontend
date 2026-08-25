@@ -1,6 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import ProductGallery from '../../components/product/ProductGallery';
+import ProductGallery from './sections/ProductGallery';
 import ColorSelector from '../../components/product/ColorSelector';
 import SizeSelector from '../../components/product/SizeSelector';
 import QuantitySelector from '../../components/product/QuantitySelector';

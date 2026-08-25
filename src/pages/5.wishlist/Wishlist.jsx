@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import WishlistGrid from '../../components/wishlist/WishlistGrid';
+import WishlistGrid from './sections/WishlistGrid';
 import Button from '../../components/common/Button';
 import { useAdmin } from '../../context/AdminContext';
 import { useWishlist } from '../../context/WishlistContext';

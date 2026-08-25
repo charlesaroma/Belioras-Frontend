@@ -1,6 +1,6 @@
 import WishlistItem from './WishlistItem';
-import { COLUMN_CLASSES } from '../product/gridColumns';
-import { useFilters } from '../../context/FilterContext';
+import { COLUMN_CLASSES } from '../../../components/product/gridColumns';
+import { useFilters } from '../../../context/FilterContext';
 
 export default function WishlistGrid({ products = [] }) {
   const { columns } = useFilters();

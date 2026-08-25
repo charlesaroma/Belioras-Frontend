@@ -1,5 +1,5 @@
-import { DATA } from '../../services/jsonDataLoader';
-import { useLanguage } from '../../context/LanguageContext';
+import { DATA } from '../../../services/jsonDataLoader';
+import { useLanguage } from '../../../context/LanguageContext';
 
 export default function InstagramFeed() {
   const { t } = useLanguage();

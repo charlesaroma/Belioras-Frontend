@@ -31,7 +31,7 @@ export default function DashboardHome() {
     <div>
       <header className="mb-8">
         <h1 className="font-display text-3xl text-espresso-700">Overview</h1>
-        <p className="mt-1 text-sm text-espresso-400">{formatDate(new Date().toISOString())} · Maison Beliora</p>
+        <p className="mt-1 text-sm text-espresso-400">{formatDate(new Date().toISOString())} · Maison Belioras</p>
       </header>
 
       <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">

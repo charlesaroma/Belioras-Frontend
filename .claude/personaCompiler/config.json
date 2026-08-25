@@ -1,0 +1,132 @@
+{
+  "meta": {
+    "name": "Facundo Mancini",
+    "version": "1.0",
+    "lastUpdated": "2026-08-25",
+    "description": "Persona profile + AI slop detection patterns for belioras-frontend"
+  },
+  "persona": {
+    "name": "facundo",
+    "style": {
+      "variableNames": "short, lowercase, sometimes single letter",
+      "comments": "rare, when present often have typos",
+      "consoleLog": "liberal use throughout, even for trivial things",
+      "errorHandling": "simple try/catch or if/else, no custom error classes",
+      "abstraction": "minimal, inline logic preferred over helper functions",
+      "loopStyle": "for...of or for i, rarely forEach",
+      "typescript": "none, JSX only",
+      "exports": "named exports or default, no barrel files",
+      "importStyle": "one per line, sometimes grouped",
+      "indentation": "2 spaces",
+      "semicolons": "sometimes yes, sometimes no",
+      "quotes": "double quotes"
+    },
+    "antiPatterns": [
+      "verbose variable names like 'fetchedUserData' instead of 'user'",
+      "excessive JSDoc or inline comments explaining obvious things",
+      "forEach when a for...of would be simpler",
+      "trying to add TypeScript types in JSX files",
+      "index parameters in callbacks unless truly needed",
+      "over-abstraction with utility functions for one-off logic",
+      "missing console.log for debugging",
+      "premature optimization or memoization",
+      "wrapper components that just pass props through",
+      "abstract factory patterns for simple state"
+    ]
+  },
+  "detectionPatterns": [
+    {
+      "id": "verbose-vars",
+      "severity": "critical",
+      "description": "Overly verbose variable names that sound like AI generated them",
+      "regex": "\\b(fetched|retrieved|transformed|normalized|aggregated|sanitized|processed|compiled|computed|derived|hydrated|materialized)[A-Z]\\w+\\b",
+      "human替代": "use short names: data, res, val, item, el, etc."
+    },
+    {
+      "id": "useless-comments",
+      "severity": "critical",
+      "description": "Comments that explain what the code obviously does",
+      "patterns": [
+        "// (?:Function|Component) (?:that |to )?(?:handles?|manages?|renders?|displays?|processes?)",
+        "// (?:Set up|Initialize|Configure|Create|Define) (?:the |a )",
+        "// (?:Check|Verify|Validate|Ensure) (?:if|that|whether)",
+        "// (?:Update|Set|Get|Fetch|Load) (?:the |data|state|result)",
+        "// Helper (?:function|method|utility)",
+        "// (?:Returns?|Yields?) (?:the |a )"
+      ],
+      "human替代": "no comments unless truly complex; if commented, mention WHY not WHAT"
+    },
+    {
+      "id": "for-each-in-react",
+      "severity": "high",
+      "description": "Using .forEach() inside JSX or component logic instead of for...of or map",
+      "regex": "\\.forEach\\s*\\(",
+      "human替代": "for...of for side effects, .map() for rendering lists"
+    },
+    {
+      "id": "unnecessary-index",
+      "severity": "high",
+      "description": "Using index as callback parameter when it's not needed",
+      "regex": "\\(\\s*\\w+\\s*,\\s*index\\s*(?:,\\s*\\w+)?\\s*\\)\\s*=>",
+      "human替代": "(item) => ... — only use index if you actually need it"
+    },
+    {
+      "id": "over-abstraction",
+      "severity": "high",
+      "description": "Tiny helper functions that should just be inline",
+      "patterns": [
+        "function\\s+(get|handle|process|format)\\w+\\s*\\([^)]*\\)\\s*\\{[^}]{0,30}\\}",
+        "const\\s+\\w+\\s*=\\s*\\([^)]*\\)\\s*=>\\s*[^;]{0,30};"
+      ],
+      "human替代": "inline the logic directly, no need for a wrapper"
+    },
+    {
+      "id": "ts-in-jsx",
+      "severity": "high",
+      "description": "TypeScript syntax in JSX files",
+      "regex": "(:\\s*(?:string|number|boolean|any|void|never|object|\\w+\\[\\]))\\s*[=,)]",
+      "human替代": "remove type annotations from .jsx files"
+    },
+    {
+      "id": "missing-consolelog",
+      "severity": "medium",
+      "description": "API calls or state changes without console.log for debugging",
+      "regex": "(?:fetch|axios|useEffect|useState)",
+      "note": "flag if no console.log exists in same file",
+      "human替代": "add console.log for debugging — 'log everything'"
+    },
+    {
+      "id": "premature-memo",
+      "severity": "medium",
+      "description": "useMemo/useCallback in components that don't need optimization",
+      "regex": "(?:useMemo|useCallback)\\s*\\(",
+      "human替代": "skip memoization unless there's a measured perf issue"
+    },
+    {
+      "id": "wrapper-component",
+      "severity": "medium",
+      "description": "Component that just renders children with no logic",
+      "patterns": [
+        "function\\s+\\w+\\s*\\([^)]*\\)\\s*\\{\\s*return\\s+\\(?\\s*<[^>]+>\\{children\\}</[^>]+>\\)?\\s*;?\\s*\\}"
+      ],
+      "human替代": "remove the wrapper, use the child directly"
+    },
+    {
+      "id": "barrel-exports",
+      "severity": "low",
+      "description": "index.js barrel files that just re-export",
+      "regex": "export\\s+\\{\\s+\\w+\\s+\\}\\s+from\\s+['\"]",
+      "human替代": "import directly from the file"
+    }
+  ],
+  "fileGlobs": {
+    "target": ["src/**/*.jsx", "src/**/*.js"],
+    "exclude": ["node_modules/**", "dist/**", "build/**", "*.config.js", "*.config.ts"]
+  },
+  "severityWeights": {
+    "critical": 3,
+    "high": 2,
+    "medium": 1,
+    "low": 0.5
+  }
+}

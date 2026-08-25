@@ -30,6 +30,9 @@ export default function Signup() {
 
   return (
     <div className="mx-auto flex max-w-md flex-col px-6 py-24">
+      <div className="mb-6 flex justify-center">
+        <img src="/belioras-logo.png" alt="Belioras" className="h-20 w-auto" />
+      </div>
       <div className="mb-10 text-center">
         <h1 className="font-display text-3xl text-espresso-700">{t('auth.signupTitle')}</h1>
         <p className="mt-2 text-sm text-espresso-400">{t('auth.signupSub')}</p>

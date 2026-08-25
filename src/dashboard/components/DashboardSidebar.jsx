@@ -16,8 +16,9 @@ export default function DashboardSidebar() {
 
   return (
     <aside className="flex w-full shrink-0 flex-col border-b bg-espresso-800 text-ivory-100 md:min-h-screen md:w-60 md:border-b-0 md:border-r md:border-espresso-600">
-      <Link to="/" className="border-b border-espresso-600 px-5 py-5 font-display text-lg tracking-[0.3em] text-champagne-300 hover:text-ivory-50">
-        BELIORA
+      <Link to="/" className="flex items-center gap-3 border-b border-espresso-600 px-5 py-4 transition-opacity hover:opacity-90">
+        <img src="/belioras-logo.png" alt="Belioras" className="h-14 w-auto rounded-sm" />
+        <span className="sr-only">Belioras — back to storefront</span>
       </Link>
       <p className="px-5 pb-1 pt-4 text-[9px] uppercase tracking-[0.3em] text-espresso-300">Admin Console</p>
 

@@ -11,7 +11,7 @@ export function signup({ name, email, password }) {
   if (users.some((u) => u.email.toLowerCase() === email.toLowerCase())) {
     throw new Error('An account with this email already exists.');
   }
-  const user = { id: `usr-${Date.now()}`, name: name || 'Beliora Client', email, password, role: 'customer' };
+  const user = { id: `usr-${Date.now()}`, name: name || 'Belioras Client', email, password, role: 'customer' };
   users.push(user);
   saveJSON(STORAGE_KEYS.users, users);
   const session = { userId: user.id, name: user.name, email: user.email, role: user.role };

@@ -11,7 +11,7 @@ export default function StoreSettings() {
   const { resetToDefaults } = useAdmin();
   const { code, setCode, baseCurrency, rates } = useCurrency();
   const { lang, setLang } = useLanguage();
-  const [storeName, setStoreName] = useState('Maison Beliora');
+  const [storeName, setStoreName] = useState('Maison Belioras');
   const [freeShipThreshold, setFreeShipThreshold] = useState(200);
   const [savedFlash, setSavedFlash] = useState(false);
   const [maintenance, setMaintenance] = useState(false);

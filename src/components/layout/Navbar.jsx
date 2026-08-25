@@ -1,89 +1,202 @@
-import { useState } from 'react';
-import { Link, NavLink } from 'react-router-dom';
-import { useDynamicNav } from '../../context/DynamicNavContext';
-import { useLanguage } from '../../context/LanguageContext';
+import { useState, useCallback, useEffect } from 'react';
+import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
+import { IconButton, useMediaQuery } from '@mui/material';
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+import clsx from 'clsx';
 import { useCart } from '../../context/CartContext';
-import { useWishlist } from '../../context/WishlistContext';
 import SearchBar from './SearchBar';
 import MobileNav from './MobileNav';
-import DynamicMegaMenu from './DynamicMegaMenu';
 
-function Badge({ count }) {
-  if (!count) return null;
-  return (
-    <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-gold-500 px-1 text-[9px] font-semibold text-espresso-800">
-      {count}
-    </span>
-  );
-}
+const NAV_LINKS = [
+  { label: "What's New", path: '/whats-new' },
+  { label: 'Shop', path: '/shop' },
+  { label: "Best Seller's", path: '/shop?sort=best-seller' },
+];
+
+const NAV_LINKS_RIGHT = [
+  { label: 'Occasion', path: '/occasion' },
+  { label: 'Dresses', path: '/dresses' },
+  { label: 'Login', path: '/login' },
+];
 
 export default function Navbar() {
-  const { items, hoveredId, setHoveredId } = useDynamicNav();
-  const cart = useCart();
-  const wishlist = useWishlist();
-  const { lang, t } = useLanguage();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const { count: cartCount } = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  // Only go transparent on the home page
+  const isHome = location.pathname === '/';
+  const transparent = isHome && !scrolled;
+
+  useEffect(() => {
+    if (!isHome) {
+      setScrolled(true);
+      return;
+    }
+    const onScroll = () => setScrolled(window.scrollY > 80);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, [isHome]);
+
+  // Reset scrolled when navigating to home
+  useEffect(() => {
+    if (isHome) setScrolled(window.scrollY > 80);
+    else setScrolled(true);
+  }, [location.pathname, isHome]);
 
   const linkClass = ({ isActive }) =>
-    `relative py-4 text-[11px] font-medium uppercase tracking-[0.25em] transition-colors duration-200 hover:text-espresso-700 ${
-      isActive ? 'text-gold-600' : 'text-espresso-500'
-    }`;
+    clsx(
+      'relative text-[12px] uppercase tracking-[0.1em] font-sans font-medium transition-colors duration-200 pb-0.5',
+      'after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100',
+      transparent
+        ? [
+            'text-white/90 hover:text-white',
+            isActive
+              ? 'text-white after:scale-x-100 after:bg-white'
+              : 'after:bg-white',
+          ]
+        : [
+            isActive
+              ? 'text-espresso-700 after:scale-x-100 after:bg-gold-500'
+              : 'text-espresso-500 hover:text-espresso-700 after:bg-gold-500',
+          ],
+    );
+
+  const handleCartClick = useCallback(() => navigate('/cart'), [navigate]);
+  const toggleMobile = useCallback(() => setMobileOpen((p) => !p), []);
+
+  const iconColor = transparent ? 'text-white' : 'text-espresso-500';
+
+  // Logo: white version when transparent, gold when solid
+  const logoSrc = transparent
+    ? '/belioras-boutique-primary-logo-rgb-white 1.svg'
+    : '/belioras-boutique-primary-logo-rgb-belioras-gold 1.svg';
 
   return (
     <header
-      className="sticky top-0 z-40 border-b border-ivory-600 bg-ivory-50/95 backdrop-blur"
-      onMouseLeave={() => setHoveredId(null)}
+      className={clsx(
+        'sticky top-0 z-50 w-full transition-all duration-300',
+        transparent
+          ? 'bg-transparent border-b border-white/10'
+          : 'bg-ivory-50/97 backdrop-blur-sm border-b border-ivory-200/60 shadow-sm',
+      )}
     >
-      <div className="mx-auto max-w-7xl px-6">
-        <div className="flex h-16 items-center justify-between gap-6">
-          <button className="text-espresso-600 md:hidden" onClick={() => setMobileOpen(true)} aria-label={t('nav.menu')}>
-            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-              <path d="M4 7h16M4 12h16M4 17h10" strokeLinecap="round" />
-            </svg>
+      <nav className="relative mx-auto flex h-16 md:h-[68px] max-w-[1400px] items-center justify-between px-6 md:px-10">
+
+        {/* Left nav links */}
+        <div className="hidden md:flex items-center gap-7 flex-1">
+          {NAV_LINKS.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={linkClass}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+        </div>
+
+        {/* Centre logo */}
+        <Link
+          to="/"
+          className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center"
+          aria-label="Belioras Home"
+        >
+          <img
+            src={logoSrc}
+            alt="Belioras"
+            className="h-10 md:h-12 w-auto transition-opacity duration-300"
+          />
+        </Link>
+
+        {/* Right nav links + icons */}
+        <div className="hidden md:flex items-center gap-7 flex-1 justify-end">
+          {NAV_LINKS_RIGHT.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={linkClass}
+            >
+              {link.label}
+            </NavLink>
+          ))}
+
+          {/* Search */}
+          <IconButton
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search"
+            size="small"
+            className={clsx('transition-colors duration-200', iconColor)}
+            sx={{ color: 'inherit', padding: '6px' }}
+          >
+            <SearchOutlinedIcon fontSize="small" />
+          </IconButton>
+
+          {/* Cart */}
+          <button
+            onClick={handleCartClick}
+            aria-label={`Cart, ${cartCount} items`}
+            className={clsx(
+              'relative flex items-center justify-center transition-colors duration-200',
+              iconColor,
+            )}
+          >
+            <ShoppingBagOutlinedIcon fontSize="small" />
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-gold-500 text-[9px] font-semibold text-white leading-none">
+                {cartCount > 9 ? '9+' : cartCount}
+              </span>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile: search + cart + hamburger */}
+        <div className="md:hidden flex items-center gap-2 ml-auto">
+          <IconButton
+            onClick={() => setSearchOpen(true)}
+            aria-label="Search"
+            size="small"
+            sx={{ color: transparent ? '#fff' : 'inherit' }}
+          >
+            <SearchOutlinedIcon fontSize="small" />
+          </IconButton>
+
+          <button
+            onClick={handleCartClick}
+            aria-label="Cart"
+            className={clsx('relative flex items-center justify-center p-1.5', iconColor)}
+          >
+            <ShoppingBagOutlinedIcon fontSize="small" />
+            {cartCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-gold-500 text-[8px] font-semibold text-white leading-none">
+                {cartCount}
+              </span>
+            )}
           </button>
 
-          <Link to="/" className="shrink-0 font-display text-xl tracking-[0.35em] text-espresso-700 md:text-2xl">
-            BELIORA
-          </Link>
-
-          <nav className="hidden flex-1 items-center justify-center gap-8 md:flex">
-            {items.map((item) => (
-              <NavLink
-                key={item.id}
-                to={item.url}
-                end={item.children.length === 0}
-                className={linkClass}
-                onMouseEnter={() => setHoveredId(item.id)}
-              >
-                {typeof item.label === 'string' ? item.label : item.label[lang] || item.label.en}
-              </NavLink>
-            ))}
-          </nav>
-
-          <div className="flex shrink-0 items-center gap-5 text-espresso-600">
-            <SearchBar />
-            <Link to="/wishlist" aria-label={t('nav.wishlist')} className="relative transition-colors hover:text-gold-600">
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M12 21s-7.5-4.6-9.6-9A5.4 5.4 0 0 1 12 6.6 5.4 5.4 0 0 1 21.6 12c-2.1 4.4-9.6 9-9.6 9z" strokeLinejoin="round" />
-              </svg>
-              <Badge count={wishlist.count} />
-            </Link>
-            <button onClick={cart.openDrawer} aria-label={t('nav.cart')} className="relative transition-colors hover:text-gold-600">
-              <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.5">
-                <path d="M6 8h12l-1 13H7L6 8z" strokeLinejoin="round" />
-                <path d="M9 8V6a3 3 0 0 1 6 0v2" />
-              </svg>
-              <Badge count={cart.count} />
-            </button>
-          </div>
+          <IconButton
+            onClick={toggleMobile}
+            aria-label="Menu"
+            size="small"
+            sx={{ color: transparent ? '#fff' : 'inherit' }}
+          >
+            {mobileOpen ? <CloseIcon fontSize="small" /> : <MenuIcon fontSize="small" />}
+          </IconButton>
         </div>
-      </div>
+      </nav>
 
-      <div className="relative hidden md:block">
-        {items.some((item) => item.id === hoveredId && item.children.length > 0) && <DynamicMegaMenu />}
-      </div>
-
+      {/* Mobile drawer */}
       <MobileNav open={mobileOpen} onClose={() => setMobileOpen(false)} />
+
+      {/* Search overlay */}
+      {searchOpen && <SearchBar onClose={() => setSearchOpen(false)} />}
     </header>
   );
 }

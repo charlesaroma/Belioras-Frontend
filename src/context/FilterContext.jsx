@@ -4,7 +4,10 @@ import { createContext, useContext, useMemo, useState } from 'react';
 const FilterContext = createContext(null);
 
 export const SORT_OPTIONS = ['featured', 'price-asc', 'price-desc', 'newest'];
-export const COLUMN_OPTIONS = [2, 3, 4, 6, 'row'];
+// Tablet (md–lg): 1-col row layout, 2 and 3 columns.
+// Large screens (xl+): 2, 4 and 6 columns.
+export const TABLET_COLUMN_OPTIONS = ['row', 2, 3];
+export const DESKTOP_COLUMN_OPTIONS = [2, 4, 6];
 
 export function FilterProvider({ children }) {
   const [activeTags, setActiveTags] = useState({

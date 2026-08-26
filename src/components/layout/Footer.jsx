@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
+import CurrencySelector from '../common/CurrencySelector';
+import LanguageSelector from '../common/LanguageSelector';
 
 export default function Footer() {
   const { t } = useLanguage();
@@ -69,6 +71,11 @@ export default function Footer() {
       <div className="border-t border-ivory-600">
         <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-3 px-6 py-6 text-[11px] uppercase tracking-widest text-espresso-300 md:flex-row">
           <p>{t('footer.rights')}</p>
+          <div className="flex items-center gap-4">
+            <CurrencySelector />
+            <span aria-hidden>·</span>
+            <LanguageSelector />
+          </div>
           <p className="font-mono">Paris · London · Lagos</p>
         </div>
       </div>

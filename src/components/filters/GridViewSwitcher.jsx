@@ -1,13 +1,13 @@
-import { COLUMN_OPTIONS, useFilters } from '../../context/FilterContext';
+import { TABLET_COLUMN_OPTIONS, DESKTOP_COLUMN_OPTIONS, useFilters } from '../../context/FilterContext';
 
-/* Grid-density control using the design PNGs from /public/icons:
-   default/active art pairs per view mode (2/3/4/6 columns + row). */
-export default function GridViewSwitcher() {
+/* Grid-density control using the design PNGs from /public/icons.
+   Tablet (md–lg) shows row/2/3; large screens show 2/4/6. */
+function IconGroup({ options, className }) {
   const { columns, setColumns } = useFilters();
 
   return (
-    <div className="hidden items-center gap-1 border border-ivory-700 p-1 md:flex" aria-label="Grid density">
-      {COLUMN_OPTIONS.map((option) => {
+    <div className={className}>
+      {options.map((option) => {
         const key = option === 'row' ? 'row' : option;
         const active = columns === option;
         return (
@@ -17,7 +17,7 @@ export default function GridViewSwitcher() {
             aria-label={option === 'row' ? 'Row layout' : `${option} columns`}
             aria-pressed={active}
             title={option === 'row' ? 'Row layout' : `${option} columns`}
-            className={`p-1 transition-opacity ${active ? 'opacity-100' : 'opacity-50 hover:opacity-80'}`}
+            className={`cursor-pointer p-1 transition-opacity ${active ? 'opacity-100' : 'opacity-50 hover:opacity-80'}`}
           >
             <img
               src={`/icons/grid-${key}-${active ? 'active' : 'default'}.png`}
@@ -28,6 +28,15 @@ export default function GridViewSwitcher() {
           </button>
         );
       })}
+    </div>
+  );
+}
+
+export default function GridViewSwitcher() {
+  return (
+    <div aria-label="Grid density">
+      <IconGroup options={TABLET_COLUMN_OPTIONS} className="flex gap-1 lg:hidden" />
+      <IconGroup options={DESKTOP_COLUMN_OPTIONS} className="hidden gap-1 lg:flex" />
     </div>
   );
 }

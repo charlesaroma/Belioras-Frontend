@@ -128,6 +128,12 @@
   }
 }
 
+/* TopBar ticker — content is duplicated once, so -50% loops seamlessly */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
 /* Constrains content on very large monitors instead of stretching
    edge-to-edge; pair with mx-auto. Adjust max-width to taste once
    real layouts are in place. */

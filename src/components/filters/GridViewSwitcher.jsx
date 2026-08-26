@@ -1,31 +1,33 @@
 import { COLUMN_OPTIONS, useFilters } from '../../context/FilterContext';
 
-function ColumnsIcon({ n, active }) {
-  return (
-    <svg viewBox="0 0 24 24" className={`h-4 w-4 ${active ? 'fill-current' : 'fill-none'} stroke-current`} strokeWidth="1.4">
-      {Array.from({ length: n }).map((_, i) => (
-        <rect key={i} x={3 + i * (18 / n)} y="5" width={16 / n - 1} height="14" rx="0.5" />
-      ))}
-    </svg>
-  );
-}
-
+/* Grid-density control using the design PNGs from /public/icons:
+   default/active art pairs per view mode (2/3/4/6 columns + row). */
 export default function GridViewSwitcher() {
   const { columns, setColumns } = useFilters();
 
   return (
     <div className="hidden items-center gap-1 border border-ivory-700 p-1 md:flex" aria-label="Grid density">
-      {COLUMN_OPTIONS.map((n) => (
-        <button
-          key={n}
-          onClick={() => setColumns(n)}
-          aria-label={`${n} columns`}
-          title={`${n} columns`}
-          className={`p-1.5 transition-colors ${columns === n ? 'bg-espresso-700 text-ivory-50' : 'text-espresso-400 hover:text-espresso-700'}`}
-        >
-          <ColumnsIcon n={n} active={false} />
-        </button>
-      ))}
+      {COLUMN_OPTIONS.map((option) => {
+        const key = option === 'row' ? 'row' : option;
+        const active = columns === option;
+        return (
+          <button
+            key={key}
+            onClick={() => setColumns(option)}
+            aria-label={option === 'row' ? 'Row layout' : `${option} columns`}
+            aria-pressed={active}
+            title={option === 'row' ? 'Row layout' : `${option} columns`}
+            className={`p-1 transition-opacity ${active ? 'opacity-100' : 'opacity-50 hover:opacity-80'}`}
+          >
+            <img
+              src={`/icons/grid-${key}-${active ? 'active' : 'default'}.png`}
+              alt=""
+              className="h-[26px] w-auto"
+              draggable="false"
+            />
+          </button>
+        );
+      })}
     </div>
   );
 }

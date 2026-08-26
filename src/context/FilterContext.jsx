@@ -4,7 +4,7 @@ import { createContext, useContext, useMemo, useState } from 'react';
 const FilterContext = createContext(null);
 
 export const SORT_OPTIONS = ['featured', 'price-asc', 'price-desc', 'newest'];
-export const COLUMN_OPTIONS = [2, 3, 4, 6];
+export const COLUMN_OPTIONS = [2, 3, 4, 6, 'row'];
 
 export function FilterProvider({ children }) {
   const [activeTags, setActiveTags] = useState({

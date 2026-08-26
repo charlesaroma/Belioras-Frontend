@@ -195,7 +195,7 @@ export default function Navbar() {
             className={clsx(
               'absolute left-1/2 -translate-x-1/2 bottom-0 z-10',
               'flex items-start justify-center rounded-b-full',
-              'w-48 h-16 sm:w-64 sm:h-24 pt-3 sm:pt-4',
+              'w-48 h-28 sm:w-72 sm:h-44 pt-4 sm:pt-6',
               'bg-ivory-100',
             )}
           >
@@ -203,7 +203,7 @@ export default function Navbar() {
               <img
                 src={logoDomeSrc}
                 alt="Belioras"
-                className="h-[38px] sm:h-[52px] w-auto"
+                className="h-[42px] sm:h-[60px] w-auto"
               />
             </Link>
           </div>

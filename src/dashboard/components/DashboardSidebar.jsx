@@ -39,10 +39,10 @@ export default function DashboardSidebar() {
         ))}
       </nav>
 
-      <div className="mt-auto hidden space-y-2 border-t border-espresso-600 p-4 md:block">
+      <div className="mt-auto space-y-2 border-t border-espresso-600 p-4">
         <button
           onClick={() => { logout(); navigate('/'); }}
-          className="w-full rounded-sm px-3 py-2 text-left text-xs uppercase tracking-widest text-espresso-200 transition-colors hover:text-error"
+          className="w-full rounded-sm px-3 py-2 text-left text-xs uppercase tracking-widest text-espresso-200 transition-colors hover:bg-error/10 hover:text-error"
         >
           Sign out
         </button>

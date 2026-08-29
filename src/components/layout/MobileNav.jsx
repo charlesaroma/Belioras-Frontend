@@ -1,115 +1,110 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
-import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import clsx from 'clsx';
 import { useDynamicNav } from '../../context/DynamicNavContext';
+import { useCurrency } from '../../context/CurrencyContext';
+import { useLanguage } from '../../context/LanguageContext';
 import Drawer from '../common/Drawer';
+import MegaMenuAccordion from './MegaMenuAccordion';
+import { PILL, PILL_ACTIVE, PILL_INACTIVE } from './navStyles';
 
-/* Drill-down drawer: tapping a parent replaces the list with its
-   children + tiles; Login stays pinned at the bottom in both states. */
+/* Same accordion the desktop mega-menu uses (MegaMenuAccordion), just
+   expanded in place instead of floating — identical at mobile & tablet
+   widths since both share this one component below the `lg` breakpoint. */
 export default function MobileNav({ open, onClose }) {
   const { items } = useDynamicNav();
-  const [activeId, setActiveId] = useState(null);
-  const active = (items || []).find((i) => i.id === activeId);
+  const { code, setCode, currencies } = useCurrency();
+  const { lang, setLang, locales } = useLanguage();
+  const [expandedId, setExpandedId] = useState(null);
 
   const handleClose = () => {
-    setActiveId(null); // reset drill state so it reopens fresh next time
+    setExpandedId(null); // collapse so it reopens fresh next time
     onClose();
   };
 
   const labelOf = (item) =>
     typeof item.label === 'string' ? item.label : item.label?.en || Object.values(item.label || {})[0];
 
-  // Children may be section nodes ({title, items}) or bare links ({label, url})
-  const childLinks = active
-    ? (active.children || []).flatMap((child) =>
-        Array.isArray(child.items) ? child.items.map((sub) => sub) : [child],
-      )
-    : [];
-
   return (
     <Drawer open={open} onClose={handleClose} title="Menu" side="left" width="max-w-xs">
       <nav className="flex h-full flex-col px-6 py-6">
         <div className="flex-1 overflow-y-auto">
-          {!active ? (
-            <ul className="flex flex-col items-center gap-8 pt-10 text-center">
-              {(items || []).map((item) => {
-                const hasChildren = Boolean(item.children?.length);
-                return (
-                  <li key={item.id}>
-                    {hasChildren ? (
+          <ul className="flex flex-col gap-1 pt-4">
+            {(items || []).map((item) => {
+              const hasChildren = Boolean(item.children?.length || item.tiles?.length);
+              const isOpen = expandedId === item.id;
+              return (
+                <li key={item.id} className="border-b border-ivory-600 last:border-b-0">
+                  {hasChildren ? (
+                    <>
                       <button
-                        onClick={() => setActiveId(item.id)}
-                        className="inline-flex items-center gap-1 font-sans text-base uppercase tracking-wide text-espresso-700"
+                        type="button"
+                        onClick={() => setExpandedId(isOpen ? null : item.id)}
+                        aria-expanded={isOpen}
+                        className="flex w-full items-center justify-between py-4 font-sans text-base uppercase tracking-wide text-espresso-700"
                       >
                         {labelOf(item)}
-                        <KeyboardArrowRightIcon sx={{ fontSize: 18 }} className="text-espresso-300" />
+                        <KeyboardArrowDownIcon
+                          sx={{ fontSize: 20 }}
+                          className={`text-espresso-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                        />
                       </button>
-                    ) : (
-                      <Link
-                        to={item.url}
-                        onClick={handleClose}
-                        className="font-sans text-base uppercase tracking-wide text-espresso-700"
+                      <div
+                        className={`grid transition-all duration-300 ease-in-out ${
+                          isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
+                        }`}
                       >
-                        {labelOf(item)}
-                      </Link>
-                    )}
-                  </li>
-                );
-              })}
-            </ul>
-          ) : (
-            <div className="pt-2">
-              <button
-                onClick={() => setActiveId(null)}
-                className="mb-6 flex items-center gap-2 text-sm text-espresso-400 hover:text-espresso-700"
-              >
-                <KeyboardBackspaceIcon sx={{ fontSize: 18 }} />
-                Back
-              </button>
-
-              <p className="mb-6 text-center text-sm font-semibold uppercase tracking-[0.2em] text-gold-600">
-                {labelOf(active)}
-              </p>
-
-              <ul className="flex flex-col items-center gap-5">
-                {childLinks.map((sub) => (
-                  <li key={sub.id || sub.slug}>
-                    <Link to={sub.url} onClick={handleClose} className="text-base text-espresso-700">
-                      {sub.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              {Boolean(active.tiles?.length) && (
-                <div className="mt-10 grid grid-cols-2 gap-4">
-                  {active.tiles.map((tile) => (
-                    <Link
-                      key={tile.id}
-                      to={tile.url}
-                      onClick={handleClose}
-                      className="group relative block aspect-[3/4] overflow-hidden bg-ivory-600"
-                    >
-                      <img src={tile.image} alt="" loading="lazy" className="h-full w-full object-cover" />
-                      <div className="absolute inset-x-0 bottom-4 flex flex-col items-center gap-1.5 px-2 text-center">
-                        <span className="font-display text-xs uppercase leading-tight tracking-wide text-espresso-800">
-                          {typeof tile.title === 'string' ? tile.title : tile.title?.en}
-                        </span>
-                        <span className="border-b border-espresso-800 pb-0.5 text-[10px] uppercase tracking-widest text-espresso-800">
-                          Shop Now
-                        </span>
+                        <div className="min-h-0 overflow-hidden pb-6">
+                          <MegaMenuAccordion item={item} onNavigate={handleClose} />
+                        </div>
                       </div>
+                    </>
+                  ) : (
+                    <Link
+                      to={item.url}
+                      onClick={handleClose}
+                      className="block py-4 font-sans text-base uppercase tracking-wide text-espresso-700"
+                    >
+                      {labelOf(item)}
                     </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </div>
 
-        {/* Login pinned at the bottom in both states */}
+        {/* Currency / language + Login pinned at the bottom */}
         <div className="border-t border-ivory-600 pt-6 text-center">
+          <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
+            {currencies.map((c) => (
+              <button
+                key={c.code}
+                type="button"
+                onClick={() => setCode(c.code)}
+                aria-pressed={c.code === code}
+                className={clsx(PILL, c.code === code ? PILL_ACTIVE : PILL_INACTIVE)}
+              >
+                {c.symbol} {c.code}
+              </button>
+            ))}
+          </div>
+
+          <div className="mb-6 flex flex-wrap items-center justify-center gap-2">
+            {locales.map((l) => (
+              <button
+                key={l.code}
+                type="button"
+                onClick={() => setLang(l.code)}
+                aria-pressed={l.code === lang}
+                className={clsx(PILL, l.code === lang ? PILL_ACTIVE : PILL_INACTIVE)}
+              >
+                {l.code.toUpperCase()}
+              </button>
+            ))}
+          </div>
+
           <Link to="/login" onClick={handleClose} className="text-base uppercase tracking-wide text-espresso-700">
             Login
           </Link>

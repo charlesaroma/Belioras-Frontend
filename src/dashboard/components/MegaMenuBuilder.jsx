@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import { useAdmin } from '../../context/AdminContext';
 import Button from '../../components/common/Button';
 
@@ -113,8 +114,10 @@ function NodeRow({ node, depth, index, siblings, actions }) {
   const [editing, setEditing] = useState(false);
   const [label, setLabel] = useState(node.label);
   const [url, setUrl] = useState(node.url);
+  const [expanded, setExpanded] = useState(true);
 
   const { draggingId, setDraggingId } = actions;
+  const hasChildren = node.children.length > 0;
 
   const saveEdit = () => {
     actions.onUpdate(node.id, { label: label.trim() || node.label, url: url.trim() || '/' });
@@ -133,8 +136,22 @@ function NodeRow({ node, depth, index, siblings, actions }) {
       }}
       className={draggingId === node.id ? 'opacity-40' : ''}
     >
-      <div className="flex cursor-grab items-center gap-2 border border-ivory-600 bg-ivory-50 px-3 py-2 hover:border-espresso-300" style={{ marginLeft: depth * 22 }}>
+      <div className="group flex cursor-grab items-center gap-2 border border-ivory-600 bg-ivory-50 px-3 py-2 hover:border-espresso-300" style={{ marginLeft: depth * 22 }}>
         <span className="select-none text-espresso-200" title="Drag">⠿</span>
+
+        {hasChildren && !editing && (
+          <button
+            type="button"
+            title={expanded ? 'Collapse' : 'Expand'}
+            onClick={() => setExpanded((v) => !v)}
+            className="shrink-0 text-espresso-300 transition-colors hover:text-gold-600"
+          >
+            <KeyboardArrowDownIcon
+              sx={{ fontSize: 18 }}
+              className={`transition-transform duration-200 ${expanded ? '' : '-rotate-90'}`}
+            />
+          </button>
+        )}
 
         {editing ? (
           <div className="flex flex-1 flex-wrap items-center gap-2 py-0.5">
@@ -161,7 +178,7 @@ function NodeRow({ node, depth, index, siblings, actions }) {
         )}
       </div>
 
-      {node.children.length > 0 && (
+      {hasChildren && expanded && (
         <ul className="mt-2 space-y-2">
           {node.children.map((child, ci) => (
             <NodeRow key={child.id} node={child} depth={depth + 1} index={ci} siblings={node.children} actions={actions} />

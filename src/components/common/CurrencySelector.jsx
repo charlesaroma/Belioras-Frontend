@@ -1,22 +1,23 @@
 import { useCurrency } from '../../context/CurrencyContext';
+import DropdownPill from './DropdownPill';
 
 export default function CurrencySelector({ className = '' }) {
   const { code, setCode, currencies } = useCurrency();
+  const active = currencies.find((c) => c.code === code);
 
   return (
-    <label className={`inline-flex items-center gap-1 text-[11px] uppercase tracking-widest ${className}`}>
-      <select
-        value={code}
-        onChange={(e) => setCode(e.target.value)}
-        aria-label="Currency"
-        className="cursor-pointer bg-transparent py-1 pr-1 outline-none transition-colors hover:text-gold-600"
-      >
-        {currencies.map((c) => (
-          <option key={c.code} value={c.code} className="text-espresso-700">
-            {c.symbol} {c.code}
-          </option>
-        ))}
-      </select>
-    </label>
+    <div className={className}>
+      <DropdownPill
+        ariaLabel="Currency"
+        activeCode={code}
+        onSelect={setCode}
+        label={
+          <>
+            {active?.symbol} <span className="hidden sm:inline">{code}</span>
+          </>
+        }
+        options={currencies.map((c) => ({ code: c.code, display: `${c.symbol} ${c.code}` }))}
+      />
+    </div>
   );
 }

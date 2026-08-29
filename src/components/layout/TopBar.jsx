@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useLanguage } from '../../context/LanguageContext';
 
@@ -7,10 +7,8 @@ const MESSAGES = {
   fr: ['Livraison express offerte dès 200 €', 'Retours gratuits sous 30 jours dans l’UE', 'Nouveau : l’Édit Cérémonie AW26'],
 };
 
-const AUTO_HIDE_MS = 6000;
-
-/* Home-page-only announcement ticker: auto-dismisses after a few
-   seconds, messages drifting left with dot separators. */
+/* Home-page-only announcement ticker: stays put until the user
+   dismisses it, messages drifting left with dot separators. */
 export default function TopBar() {
   const { lang } = useLanguage();
   const location = useLocation();
@@ -24,12 +22,6 @@ export default function TopBar() {
   }
   const visible = state.home && !state.dismissed;
 
-  useEffect(() => {
-    if (!isHome || state.dismissed) return undefined;
-    const timer = setTimeout(() => setState((s) => ({ ...s, dismissed: true })), AUTO_HIDE_MS);
-    return () => clearTimeout(timer);
-  }, [isHome, state.dismissed]);
-
   if (!isHome) return null;
 
   // Duplicate the sequence so the -50% translate loops seamlessly
@@ -37,11 +29,11 @@ export default function TopBar() {
 
   return (
     <div
-      className={`overflow-hidden bg-espresso-800 transition-all duration-700 ease-in-out ${
+      className={`relative z-50 overflow-hidden bg-espresso-800 transition-all duration-700 ease-in-out ${
         visible ? 'max-h-10 opacity-100' : 'max-h-0 opacity-0'
       }`}
     >
-      <div className="py-2">
+      <div className="relative py-2 pr-10">
         <div className="flex w-max animate-[marquee-left_28s_linear_infinite] items-center whitespace-nowrap">
           {items.map((message, i) => (
             <span key={i} className="flex items-center">
@@ -52,6 +44,17 @@ export default function TopBar() {
             </span>
           ))}
         </div>
+
+        <button
+          type="button"
+          onClick={() => setState((s) => ({ ...s, dismissed: true }))}
+          aria-label="Dismiss announcement"
+          className="absolute right-4 top-1/2 -translate-y-1/2 text-champagne-300 transition-colors hover:text-white"
+        >
+          <svg viewBox="0 0 16 16" width="10" height="10" fill="none" aria-hidden="true">
+            <path d="M1 1l14 14M15 1L1 15" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+          </svg>
+        </button>
       </div>
     </div>
   );

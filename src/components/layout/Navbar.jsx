@@ -1,9 +1,9 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { Link, NavLink, useNavigate, useLocation } from 'react-router-dom';
-import { IconButton } from '@mui/material';
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import clsx from 'clsx';
@@ -13,6 +13,8 @@ import { useLanguage } from '../../context/LanguageContext';
 import SearchBar from './SearchBar';
 import MobileNav from './MobileNav';
 import DynamicMegaMenu from './DynamicMegaMenu';
+import RegionSelector from '../common/RegionSelector';
+import { NAV_LINK, ICON_BUTTON } from './navStyles';
 
 const HOVER_CLOSE_DELAY = 150;
 
@@ -87,20 +89,11 @@ export default function Navbar() {
 
   const linkClass = ({ isActive }) =>
     clsx(
-      'relative text-[13px] lg:text-[16px] uppercase tracking-[0.1em] font-sans font-medium transition-colors duration-200 pb-0.5',
-      'after:absolute after:bottom-0 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:transition-transform after:duration-200 hover:after:scale-x-100',
+      'text-[13px] lg:text-[16px] uppercase tracking-[0.1em] font-sans font-medium',
+      NAV_LINK,
       transparent
-        ? [
-            'text-white/90 hover:text-white',
-            isActive
-              ? 'text-white after:scale-x-100 after:bg-white'
-              : 'after:bg-white',
-          ]
-        : [
-            isActive
-              ? 'text-espresso-700 after:scale-x-100 after:bg-gold-500'
-              : 'text-espresso-500 hover:text-espresso-700 after:bg-gold-500',
-          ],
+        ? (isActive ? 'text-white after:scale-x-100' : 'text-white/90')
+        : (isActive ? 'text-espresso-700 after:scale-x-100' : 'text-espresso-500'),
     );
 
   const handleCartClick = useCallback(() => navigate('/cart'), [navigate]);
@@ -143,12 +136,8 @@ export default function Navbar() {
           type="button"
           onClick={() => setHoveredId(isOpen ? null : item.id)}
           className={clsx(
-            'flex items-center gap-1.5 text-[13px] lg:text-[16px] uppercase tracking-[0.1em] font-sans font-medium transition-colors duration-200 pb-0.5',
-            isOpen
-              ? 'text-gold-600'
-              : transparent
-                ? 'text-white/90 hover:text-white'
-                : 'text-espresso-500 hover:text-espresso-700',
+            'flex items-center gap-1.5 text-[13px] lg:text-[16px] uppercase tracking-[0.1em] font-sans font-medium transition-colors duration-200',
+            isOpen ? 'text-gold-600' : [transparent ? 'text-white/90' : 'text-espresso-500', 'hover:text-gold-600'],
           )}
           aria-expanded={isOpen}
         >
@@ -170,7 +159,7 @@ export default function Navbar() {
       )}
       onMouseLeave={scheduleClose}
     >
-      <nav className="relative mx-auto flex h-[84px] md:h-[96px] lg:h-[88px] max-w-[1400px] items-center justify-between px-6 md:px-10">
+      <nav className="relative mx-auto flex h-[84px] max-w-[1400px] items-center justify-between px-6 md:px-10">
 
         {/* Left nav links — WHAT'S NEW · SHOP · BEST SELLERS */}
         <div className="hidden lg:flex items-center gap-7 flex-1">
@@ -181,31 +170,33 @@ export default function Navbar() {
         {transparent ? (
           <Link
             to="/"
-            className="absolute left-1/2 -translate-x-1/2 flex items-center justify-center"
+            className="absolute left-1/2 -translate-x-1/2 h-full flex items-center justify-center"
             aria-label="Belioras Home"
           >
             <img
               src={logoInlineSrc}
               alt="Belioras"
-              className="h-[58px] sm:h-[68px] md:h-[76px] w-auto transition-opacity duration-300"
+              className="w-[114px] h-[84px] transition-opacity duration-300"
             />
           </Link>
         ) : (
           <div
             className={clsx(
-              'absolute left-1/2 -translate-x-1/2 bottom-0 z-10',
-              'flex items-start justify-center rounded-b-full',
-              'w-48 h-28 sm:w-72 sm:h-44 pt-4 sm:pt-6',
-              'bg-ivory-100',
+              'absolute left-1/2 -translate-x-1/2 top-0 z-10',
+              'flex flex-col items-center rounded-b-full shadow-md',
+              'w-[194px] h-[128px]',
+              'bg-ivory-50',
             )}
           >
-            <Link to="/" aria-label="Belioras Home" className="flex items-start">
-              <img
-                src={logoDomeSrc}
-                alt="Belioras"
-                className="h-[42px] sm:h-[60px] w-auto"
-              />
-            </Link>
+            <div className="flex items-center justify-center w-full h-[84px]">
+              <Link to="/" aria-label="Belioras Home" className="flex items-center justify-center">
+                <img
+                  src={logoDomeSrc}
+                  alt="Belioras"
+                  className="w-[114px] h-[84px]"
+                />
+              </Link>
+            </div>
           </div>
         )}
 
@@ -213,28 +204,31 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-7 flex-1 justify-end">
           {navRight.map(renderNavItem)}
 
-          <NavLink to="/login" className={linkClass}>
-            Login
-          </NavLink>
+          {/* Account */}
+          <Link
+            to="/login"
+            aria-label="Account"
+            className={clsx('flex items-center justify-center', ICON_BUTTON, iconColor)}
+          >
+            <PersonOutlineOutlinedIcon fontSize="small" />
+          </Link>
 
           {/* Search */}
-          <IconButton
+          <button
+            type="button"
             onClick={() => setSearchOpen(true)}
             aria-label="Search"
-            size="small"
-            sx={{ color: transparent ? '#fff' : 'inherit', padding: '6px' }}
+            className={clsx('flex items-center justify-center', ICON_BUTTON, iconColor)}
           >
             <SearchOutlinedIcon fontSize="small" />
-          </IconButton>
+          </button>
 
           {/* Cart */}
           <button
+            type="button"
             onClick={handleCartClick}
             aria-label={`Cart, ${cartCount} items`}
-            className={clsx(
-              'relative flex items-center justify-center transition-colors duration-200',
-              iconColor,
-            )}
+            className={clsx('relative flex items-center justify-center', ICON_BUTTON, iconColor)}
           >
             <ShoppingCartOutlinedIcon fontSize="small" />
             {cartCount > 0 && (
@@ -243,33 +237,37 @@ export default function Navbar() {
               </span>
             )}
           </button>
+
+          {/* Currency / language — single combined utility control */}
+          <RegionSelector className={iconColor} />
         </div>
 
         {/* Below lg: burger left, logo centre, search + cart right */}
         <div className="lg:hidden flex w-full items-center">
-          <IconButton
+          <button
+            type="button"
             onClick={toggleMobile}
             aria-label="Menu"
-            size="small"
-            sx={{ color: transparent ? '#fff' : 'inherit' }}
+            className={clsx('flex items-center justify-center p-1.5', ICON_BUTTON, iconColor)}
           >
             {mobileOpen ? <CloseIcon fontSize="small" /> : <MenuIcon fontSize="small" />}
-          </IconButton>
+          </button>
 
           <div className="ml-auto flex items-center gap-1">
-            <IconButton
+            <button
+              type="button"
               onClick={() => setSearchOpen(true)}
               aria-label="Search"
-              size="small"
-              sx={{ color: transparent ? '#fff' : 'inherit' }}
+              className={clsx('flex items-center justify-center p-1.5', ICON_BUTTON, iconColor)}
             >
               <SearchOutlinedIcon fontSize="small" />
-            </IconButton>
+            </button>
 
             <button
+              type="button"
               onClick={handleCartClick}
               aria-label="Cart"
-              className={clsx('relative flex items-center justify-center p-1.5', iconColor)}
+              className={clsx('relative flex items-center justify-center p-1.5', ICON_BUTTON, iconColor)}
             >
               <ShoppingCartOutlinedIcon fontSize="small" />
               {cartCount > 0 && (

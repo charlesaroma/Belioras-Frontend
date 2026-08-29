@@ -1,15 +1,20 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Button from '../../components/common/Button';
+import AuthSplitShell from './AuthSplitShell';
+import FloatingInput from './FloatingInput';
 import { signup } from '../../services/authService';
 import { useLanguage } from '../../context/LanguageContext';
 
-const FIELD = 'w-full border border-ivory-700 bg-ivory-50 px-3 py-2.5 text-sm outline-none transition-colors focus:border-gold-600 placeholder:text-espresso-200';
+const HERO_IMAGE = 'https://ik.imagekit.io/sbgenu6wj/Belioras/Home/heroImageBelioras.png';
 
 export default function Signup() {
   const navigate = useNavigate();
   const { t } = useLanguage();
   const [form, setForm] = useState({ name: '', email: '', password: '', confirm: '' });
+  const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
 
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }));
@@ -29,28 +34,85 @@ export default function Signup() {
   };
 
   return (
-    <div className="mx-auto flex max-w-md flex-col px-6 py-24">
-      <div className="mb-6 flex justify-center">
-        <img src="/belioras-logo.png" alt="Belioras" className="h-20 w-auto" />
-      </div>
-      <div className="mb-10 text-center">
-        <h1 className="font-display text-3xl text-espresso-700">{t('auth.signupTitle')}</h1>
-        <p className="mt-2 text-sm text-espresso-400">{t('auth.signupSub')}</p>
+    <AuthSplitShell
+      heroImage={HERO_IMAGE}
+      kicker="Membership Benefits"
+      title="Exclusively yours."
+      blurb="Early access to new collections, complimentary personal styling, priority shipping & returns, and invitations to private events."
+    >
+      <div className="mb-10 text-center lg:text-left">
+        <h1 className="mb-3 font-display text-3xl text-espresso-700 lg:text-4xl">{t('auth.signupTitle')}</h1>
+        <p className="text-sm text-espresso-400">{t('auth.signupSub')}</p>
       </div>
 
-      <form onSubmit={submit} className="space-y-5">
-        <input required placeholder="Full name" value={form.name} onChange={set('name')} className={FIELD} />
-        <input required type="email" placeholder={t('auth.email')} value={form.email} onChange={set('email')} className={FIELD} />
-        <input required type="password" placeholder={t('auth.password')} value={form.password} onChange={set('password')} className={FIELD} />
-        <input required type="password" placeholder={t('auth.confirmPassword')} value={form.confirm} onChange={set('confirm')} className={FIELD} />
-        {error && <p className="text-xs text-error">{error}</p>}
-        <Button type="submit" variant="primary" size="lg" className="w-full">{t('auth.signup')}</Button>
+      <form onSubmit={submit} noValidate className="space-y-6">
+        <FloatingInput
+          id="name"
+          label="Full name"
+          required
+          autoComplete="name"
+          value={form.name}
+          onChange={set('name')}
+        />
+
+        <FloatingInput
+          id="email"
+          label={t('auth.email')}
+          type="email"
+          required
+          autoComplete="email"
+          value={form.email}
+          onChange={(e) => { set('email')(e); setError(''); }}
+        />
+
+        <FloatingInput
+          id="password"
+          label={t('auth.password')}
+          type={showPassword ? 'text' : 'password'}
+          required
+          autoComplete="new-password"
+          value={form.password}
+          onChange={(e) => { set('password')(e); setError(''); }}
+          rightSlot={
+            <button
+              type="button"
+              onClick={() => setShowPassword((v) => !v)}
+              className="text-espresso-200 transition-colors hover:text-espresso-700"
+              tabIndex={-1}
+              aria-label={showPassword ? 'Hide password' : 'Show password'}
+            >
+              {showPassword ? <VisibilityOff fontSize="small" /> : <Visibility fontSize="small" />}
+            </button>
+          }
+        />
+
+        <FloatingInput
+          id="confirm"
+          label={t('auth.confirmPassword')}
+          type={showPassword ? 'text' : 'password'}
+          required
+          autoComplete="new-password"
+          value={form.confirm}
+          onChange={(e) => { set('confirm')(e); setError(''); }}
+        />
+
+        {error && (
+          <p className="rounded border border-error/30 bg-error/5 px-4 py-3 text-xs text-error" role="alert">
+            {error}
+          </p>
+        )}
+
+        <Button type="submit" variant="primary" size="lg" className="w-full">
+          {t('auth.signup')}
+        </Button>
       </form>
 
       <p className="mt-8 text-center text-sm text-espresso-400">
         {t('auth.hasAccount')}{' '}
-        <Link to="/login" className="text-gold-600 underline underline-offset-4 hover:text-gold-700">{t('auth.login')}</Link>
+        <Link to="/login" className="text-gold-600 underline underline-offset-4 hover:text-gold-700">
+          {t('auth.login')}
+        </Link>
       </p>
-    </div>
+    </AuthSplitShell>
   );
 }

@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import ArrowBack from '@mui/icons-material/ArrowBack';
+import MarkEmailReadOutlined from '@mui/icons-material/MarkEmailReadOutlined';
+import VpnKeyOutlined from '@mui/icons-material/VpnKeyOutlined';
 import Button from '../../components/common/Button';
+import AuthSplitShell from './AuthSplitShell';
+import FloatingInput from './FloatingInput';
 import { requestPasswordReset } from '../../services/authService';
 import { useLanguage } from '../../context/LanguageContext';
 
-const FIELD = 'w-full border border-ivory-700 bg-ivory-50 px-3 py-2.5 text-sm outline-none transition-colors focus:border-gold-600 placeholder:text-espresso-200';
+const HERO_IMAGE = 'https://ik.imagekit.io/sbgenu6wj/Belioras/Home/model-belioras123.jpeg';
 
 export default function ForgotPassword() {
   const { t } = useLanguage();
@@ -18,29 +23,52 @@ export default function ForgotPassword() {
   };
 
   return (
-    <div className="mx-auto flex max-w-md flex-col px-6 py-24">
-      <div className="mb-6 flex justify-center">
-        <img src="/belioras-logo.png" alt="Belioras" className="h-20 w-auto" />
-      </div>
-      <div className="mb-10 text-center">
-        <h1 className="font-display text-3xl text-espresso-700">{t('auth.forgotTitle')}</h1>
-        <p className="mt-2 text-sm text-espresso-400">{t('auth.forgotSub')}</p>
+    <AuthSplitShell
+      heroImage={HERO_IMAGE}
+      kicker="Secure Access"
+      title={<>Reset your password <br /> securely.</>}
+      blurb="We'll send a secure link to your email so you can create a new password and regain access to your account."
+    >
+      <div className="mb-10 text-center lg:text-left">
+        <h1 className="mb-3 font-display text-3xl text-espresso-700 lg:text-4xl">
+          {sent ? 'Check your inbox' : t('auth.forgotTitle')}
+        </h1>
+        <p className="text-sm text-espresso-400">
+          <Link to="/login" className="inline-flex items-center gap-1 font-medium text-gold-700 underline underline-offset-4 hover:text-espresso-700">
+            <ArrowBack sx={{ fontSize: 14 }} />
+            {t('auth.backToLogin')}
+          </Link>
+        </p>
       </div>
 
       {sent ? (
-        <div className="border border-champagne-300 bg-champagne-50 px-5 py-4 text-center text-sm text-brown-700">
-          {t('auth.resetSent')}
+        <div className="rounded-2xl border border-gold-500/30 bg-champagne-50 p-6 text-center">
+          <span className="mx-auto mb-4 flex size-12 items-center justify-center rounded-full bg-gold-500 text-ivory-50">
+            <MarkEmailReadOutlined aria-hidden="true" />
+          </span>
+          <h2 className="mb-2 font-display text-lg text-espresso-700">Email sent</h2>
+          <p className="text-sm leading-relaxed text-espresso-400">
+            {t('auth.resetSent')}
+          </p>
         </div>
       ) : (
-        <form onSubmit={submit} className="space-y-5">
-          <input required type="email" placeholder={t('auth.email')} value={email} onChange={(e) => setEmail(e.target.value)} className={FIELD} />
-          <Button type="submit" variant="primary" size="lg" className="w-full">{t('auth.sendLink')}</Button>
+        <form onSubmit={submit} noValidate className="space-y-6">
+          <FloatingInput
+            id="email"
+            label={t('auth.email')}
+            type="email"
+            required
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+
+          <Button type="submit" variant="primary" size="lg" className="w-full gap-2">
+            <VpnKeyOutlined fontSize="small" />
+            {t('auth.sendLink')}
+          </Button>
         </form>
       )}
-
-      <p className="mt-8 text-center text-sm">
-        <Link to="/login" className="text-gold-600 underline underline-offset-4 hover:text-gold-700">{t('auth.backToLogin')}</Link>
-      </p>
-    </div>
+    </AuthSplitShell>
   );
 }

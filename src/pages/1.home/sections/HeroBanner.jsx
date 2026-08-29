@@ -4,22 +4,21 @@ import clsx from 'clsx';
 export default function HeroBanner() {
   return (
     <section
-      className={clsx('relative', 'overflow-hidden', '-mt-[84px]', 'md:-mt-[96px]', 'lg:-mt-[calc(88px+36px)]')}
-      style={{ height: '100svh' }}
+      className={clsx('relative', 'overflow-hidden', '-mt-[calc(84px+36px)]')}
     >
-      {/* Full-bleed editorial photo */}
+      {/* Full-bleed editorial photo — full width, natural height (no cropping) */}
       <img
         src="https://ik.imagekit.io/sbgenu6wj/Belioras/Home/heroImageBelioras.png"
         alt="Belioras – New Season Editorial"
-        className={clsx('absolute', 'inset-0', 'h-full', 'w-full', 'object-cover', 'object-top')}
+        className={clsx('block', 'w-full', 'h-auto')}
         fetchpriority="high"
       />
 
       {/* Very subtle bottom vignette */}
       <div className={clsx('absolute', 'inset-0', 'bg-gradient-to-t', 'from-black/35', 'via-transparent', 'to-transparent')} />
 
-      {/* Bottom-left CTA — sits above Navbar height so it's always visible */}
-      <div className={clsx('absolute', 'bottom-10', 'left-8', 'md:left-12')}>
+      {/* Bottom-left CTA — positioned safely above bottom edge */}
+      <div className={clsx('absolute', 'bottom-20', 'left-8', 'md:left-12')}>
         <Link
           to="/whats-new"
           className={clsx('group', 'inline-flex', 'flex-col', 'gap-1')}

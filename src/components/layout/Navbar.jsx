@@ -13,7 +13,8 @@ import { useLanguage } from '../../context/LanguageContext';
 import SearchBar from './SearchBar';
 import MobileNav from './MobileNav';
 import DynamicMegaMenu from './DynamicMegaMenu';
-import RegionSelector from '../common/RegionSelector';
+import CurrencySelector from '../common/CurrencySelector';
+import LanguageSelector from '../common/LanguageSelector';
 import { NAV_LINK, ICON_BUTTON } from './navStyles';
 
 const HOVER_CLOSE_DELAY = 150;
@@ -242,8 +243,9 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* Currency / language — single combined utility control */}
-          <RegionSelector className={iconColor} />
+          {/* Currency and language — separate icon triggers */}
+          <CurrencySelector className={iconColor} iconOnly />
+          <LanguageSelector className={iconColor} iconOnly />
         </div>
 
         {/* Below lg: burger left, logo centre, search + cart right */}

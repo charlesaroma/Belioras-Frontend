@@ -1,6 +1,6 @@
 /* Shared hover/interaction conventions for the storefront nav (Navbar,
-   DynamicMegaMenu, MobileNav, RegionSelector) — one place so every
-   interactive element hovers the same way, at the same speed. */
+   DynamicMegaMenu, MobileNav, CurrencySelector, LanguageSelector) — one
+   place so every interactive element hovers the same way, at the same speed. */
 
 export const NAV_LINK =
   'relative pb-0.5 transition-colors duration-200 hover:text-gold-600 ' +

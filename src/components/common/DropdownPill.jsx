@@ -1,7 +1,10 @@
 import { useState, useId } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-export default function DropdownPill({ ariaLabel, label, options, activeCode, onSelect }) {
+const DEFAULT_TRIGGER =
+  'inline-flex items-center gap-1 rounded-full border border-current/30 px-3 py-1 text-[11px] uppercase tracking-widest transition-colors hover:border-current/60';
+
+export default function DropdownPill({ ariaLabel, icon, label, showChevron = true, triggerClassName, options, activeCode, onSelect }) {
   const [open, setOpen] = useState(false);
   const listId = useId();
 
@@ -14,13 +17,16 @@ export default function DropdownPill({ ariaLabel, label, options, activeCode, on
         aria-expanded={open}
         aria-controls={listId}
         aria-label={ariaLabel}
-        className="inline-flex items-center gap-1 rounded-full border border-current/30 px-3 py-1 text-[11px] uppercase tracking-widest transition-colors hover:border-current/60"
+        className={triggerClassName || DEFAULT_TRIGGER}
       >
+        {icon}
         {label}
-        <KeyboardArrowDownIcon
-          sx={{ fontSize: 14 }}
-          className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
-        />
+        {showChevron && (
+          <KeyboardArrowDownIcon
+            sx={{ fontSize: 14 }}
+            className={`transition-transform duration-200 ${open ? 'rotate-180' : ''}`}
+          />
+        )}
       </button>
 
       {open && (

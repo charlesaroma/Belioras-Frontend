@@ -9,6 +9,10 @@ const CATEGORY_TOKENS = {
   'coats-jackets': ['cat:coats-jackets'],
 };
 
+const OCCASION_TOKENS = [
+  'occ:birthday', 'occ:party', 'occ:cocktail', 'occ:wedding-guest', 'occ:evening', 'occ:gala', 'occ:prom', 'occ:formal',
+];
+
 export function resolveNavTokens(slug) {
   const parts = String(slug || '').split('/').filter(Boolean);
   const [head, second, third] = parts;
@@ -18,7 +22,7 @@ export function resolveNavTokens(slug) {
   if (head === 'new-arrivals') return ['tag:new'];
 
   if (head === 'shop' && second === 'category') return CATEGORY_TOKENS[third] || [`cat:${third}`];
-  if (head === 'shop' && second === 'occasion') return [`occ:${third}`];
+  if (head === 'shop' && second === 'occasion') return third ? [`occ:${third}`] : OCCASION_TOKENS;
   if (head === 'shop' && second === 'style') return [`style:${third}`];
   if (head === 'shop' && second === 'fabric') return [`fabric:${third}`];
   if (head === 'shop' && second === 'color') {

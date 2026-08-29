@@ -120,7 +120,7 @@
       "id": "occasion",
       "label": "OCCASION",
       "slug": "occasion",
-      "url": "/shop",
+      "url": "/shop/occasion",
       "nav": "right",
       "tiles": [
         { "id": "occ-tile-1", "title": "Wedding Guest", "url": "/shop/occasion/wedding-guest", "image": "https://images.unsplash.com/photo-1496747611176-843222e1e57c?q=80&w=900&auto=format&fit=crop" },

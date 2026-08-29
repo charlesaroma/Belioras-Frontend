@@ -61,7 +61,7 @@ export default function RegionSelector({ className = '' }) {
                     aria-pressed={l.code === lang}
                     className={clsx(PILL, l.code === lang ? PILL_ACTIVE : PILL_INACTIVE)}
                   >
-                    {l.code.toUpperCase()}
+                    {l.label}
                   </button>
                 ))}
               </div>

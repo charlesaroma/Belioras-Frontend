@@ -38,25 +38,34 @@ export default function MobileNav({ open, onClose }) {
                 <li key={item.id} className="border-b border-ivory-600 last:border-b-0">
                   {hasChildren ? (
                     <>
-                      <button
-                        type="button"
-                        onClick={() => setExpandedId(isOpen ? null : item.id)}
-                        aria-expanded={isOpen}
-                        className="flex w-full items-center justify-between py-4 font-sans text-base uppercase tracking-wide text-espresso-700"
-                      >
-                        {labelOf(item)}
-                        <KeyboardArrowDownIcon
-                          sx={{ fontSize: 20 }}
-                          className={`text-espresso-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
-                        />
-                      </button>
+                      <div className="flex items-center">
+                        <Link
+                          to={item.url}
+                          onClick={handleClose}
+                          className="flex-1 py-4 font-sans text-base uppercase tracking-wide text-espresso-700"
+                        >
+                          {labelOf(item)}
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => setExpandedId(isOpen ? null : item.id)}
+                          aria-expanded={isOpen}
+                          aria-label={`${isOpen ? 'Collapse' : 'Expand'} ${labelOf(item)}`}
+                          className="flex items-center justify-center p-4 -m-2"
+                        >
+                          <KeyboardArrowDownIcon
+                            sx={{ fontSize: 20 }}
+                            className={`text-espresso-300 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}
+                          />
+                        </button>
+                      </div>
                       <div
                         className={`grid transition-all duration-300 ease-in-out ${
                           isOpen ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'
                         }`}
                       >
                         <div className="min-h-0 overflow-hidden pb-6">
-                          <MegaMenuAccordion item={item} onNavigate={handleClose} />
+                          {isOpen && <MegaMenuAccordion item={item} onNavigate={handleClose} />}
                         </div>
                       </div>
                     </>
@@ -100,7 +109,7 @@ export default function MobileNav({ open, onClose }) {
                 aria-pressed={l.code === lang}
                 className={clsx(PILL, l.code === lang ? PILL_ACTIVE : PILL_INACTIVE)}
               >
-                {l.code.toUpperCase()}
+                {l.label}
               </button>
             ))}
           </div>

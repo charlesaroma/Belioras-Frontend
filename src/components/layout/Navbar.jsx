@@ -132,18 +132,22 @@ export default function Navbar() {
         onMouseEnter={() => { cancelClose(); setHoveredId(item.id); }}
         onMouseLeave={scheduleClose}
       >
-        <button
-          type="button"
-          onClick={() => setHoveredId(isOpen ? null : item.id)}
-          className={clsx(
-            'flex items-center gap-1.5 text-[13px] lg:text-[16px] uppercase tracking-[0.1em] font-sans font-medium transition-colors duration-200',
-            isOpen ? 'text-gold-600' : [transparent ? 'text-white/90' : 'text-espresso-500', 'hover:text-gold-600'],
-          )}
+        <NavLink
+          to={item.url}
+          onClick={() => setHoveredId(null)}
+          className={({ isActive }) =>
+            clsx(
+              'text-[13px] lg:text-[16px] uppercase tracking-[0.1em] font-sans font-medium',
+              NAV_LINK,
+              isOpen || isActive
+                ? 'text-gold-600 after:scale-x-100'
+                : transparent ? 'text-white/90' : 'text-espresso-500',
+            )
+          }
           aria-expanded={isOpen}
         >
           {label}
-          {isOpen && <CloseIcon sx={{ fontSize: 14 }} />}
-        </button>
+        </NavLink>
       </div>
     );
   };
@@ -204,15 +208,6 @@ export default function Navbar() {
         <div className="hidden lg:flex items-center gap-7 flex-1 justify-end">
           {navRight.map(renderNavItem)}
 
-          {/* Account */}
-          <Link
-            to="/login"
-            aria-label="Account"
-            className={clsx('flex items-center justify-center', ICON_BUTTON, iconColor)}
-          >
-            <PersonOutlineOutlinedIcon fontSize="small" />
-          </Link>
-
           {/* Search */}
           <button
             type="button"
@@ -222,6 +217,15 @@ export default function Navbar() {
           >
             <SearchOutlinedIcon fontSize="small" />
           </button>
+
+          {/* Account */}
+          <Link
+            to="/login"
+            aria-label="Account"
+            className={clsx('flex items-center justify-center', ICON_BUTTON, iconColor)}
+          >
+            <PersonOutlineOutlinedIcon fontSize="small" />
+          </Link>
 
           {/* Cart */}
           <button

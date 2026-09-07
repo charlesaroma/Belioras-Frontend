@@ -10,6 +10,7 @@ import clsx from 'clsx';
 import { useCart } from '../../context/CartContext';
 import { useDynamicNav } from '../../context/DynamicNavContext';
 import { useLanguage } from '../../context/LanguageContext';
+import { getSession } from '../../services/authService';
 import SearchBar from './SearchBar';
 import MobileNav from './MobileNav';
 import DynamicMegaMenu from './DynamicMegaMenu';
@@ -188,9 +189,9 @@ export default function Navbar() {
           <div
             className={clsx(
               'absolute left-1/2 -translate-x-1/2 top-0 z-10',
-              'flex flex-col items-center rounded-b-full shadow-md',
+              'flex flex-col items-center rounded-b-full',
               'w-[194px] h-[128px]',
-              'bg-ivory-50',
+              'bg-ivory-50/97 backdrop-blur-sm',
             )}
           >
             <div className="flex items-center justify-center w-full h-[84px]">
@@ -221,7 +222,7 @@ export default function Navbar() {
 
           {/* Account */}
           <Link
-            to="/login"
+            to={getSession() ? '/orders' : '/login'}
             aria-label="Account"
             className={clsx('flex items-center justify-center', ICON_BUTTON, iconColor)}
           >

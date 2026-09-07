@@ -23,6 +23,7 @@ import ProductDetail from './pages/4.productDetail/ProductDetail';
 import Wishlist from './pages/5.wishlist/Wishlist';
 import CartPage from './pages/6.cart/CartPage';
 import Checkout from './pages/7.checkout/Checkout';
+import OrderHistory from './pages/8.orders/OrderHistory';
 import Login from './pages/0.auth/Login';
 import Signup from './pages/0.auth/Signup';
 import ForgotPassword from './pages/0.auth/ForgotPassword';
@@ -113,6 +114,7 @@ function Shell() {
           <Route path="/best-sellers" element={<BestSellers />} />
           <Route path="/product/:slug" element={<ProductDetail />} />
           <Route path="/wishlist" element={<Wishlist />} />
+          <Route path="/orders" element={<OrderHistory />} />
           <Route path="/cart" element={<CartPage />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="*" element={<NotFound />} />

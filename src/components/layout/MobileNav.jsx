@@ -8,6 +8,7 @@ import { useLanguage } from '../../context/LanguageContext';
 import Drawer from '../common/Drawer';
 import MegaMenuAccordion from './MegaMenuAccordion';
 import { PILL, PILL_ACTIVE, PILL_INACTIVE } from './navStyles';
+import { getSession } from '../../services/authService';
 
 /* Same accordion the desktop mega-menu uses (MegaMenuAccordion), just
    expanded in place instead of floating — identical at mobile & tablet
@@ -114,8 +115,12 @@ export default function MobileNav({ open, onClose }) {
             ))}
           </div>
 
-          <Link to="/login" onClick={handleClose} className="text-base uppercase tracking-wide text-espresso-700">
-            Login
+          <Link
+            to={getSession() ? '/orders' : '/login'}
+            onClick={handleClose}
+            className="text-base uppercase tracking-wide text-espresso-700"
+          >
+            {getSession() ? 'Orders' : 'Login'}
           </Link>
         </div>
       </nav>

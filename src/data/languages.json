@@ -89,6 +89,16 @@
         "moveToBag": "Move to Bag",
         "browse": "Browse the Collection"
       },
+      "orders": {
+        "title": "Order History",
+        "emptyTitle": "No orders yet",
+        "emptyMsg": "Your past purchases will appear here once you place an order.",
+        "browse": "Start Shopping",
+        "signInTitle": "Sign in to view your orders",
+        "signInMsg": "Track your past purchases and order status once you're signed in.",
+        "signIn": "Sign In",
+        "placedOn": "Placed on"
+      },
       "checkout": {
         "title": "Checkout",
         "contact": "Contact",
@@ -234,6 +244,16 @@
         "emptyMsg": "Touchez le cœur sur une pièce pour la garder ici.",
         "moveToBag": "Mettre au Panier",
         "browse": "Parcourir la Collection"
+      },
+      "orders": {
+        "title": "Historique des Commandes",
+        "emptyTitle": "Aucune commande pour le moment",
+        "emptyMsg": "Vos achats précédents apparaîtront ici dès que vous passerez une commande.",
+        "browse": "Commencer mes Achats",
+        "signInTitle": "Connectez-vous pour voir vos commandes",
+        "signInMsg": "Suivez vos achats précédents et l'état de vos commandes une fois connecté.",
+        "signIn": "Se Connecter",
+        "placedOn": "Commandée le"
       },
       "checkout": {
         "title": "Paiement",
@@ -381,6 +401,16 @@
         "moveToBag": "In die Tasche Legen",
         "browse": "Kollektion Durchstöbern"
       },
+      "orders": {
+        "title": "Bestellverlauf",
+        "emptyTitle": "Noch keine Bestellungen",
+        "emptyMsg": "Ihre bisherigen Einkäufe werden hier angezeigt, sobald Sie eine Bestellung aufgeben.",
+        "browse": "Jetzt Einkaufen",
+        "signInTitle": "Melden Sie sich an, um Ihre Bestellungen zu sehen",
+        "signInMsg": "Verfolgen Sie Ihre bisherigen Einkäufe und den Bestellstatus nach der Anmeldung.",
+        "signIn": "Anmelden",
+        "placedOn": "Bestellt am"
+      },
       "checkout": {
         "title": "Kasse",
         "contact": "Kontakt",
@@ -526,6 +556,16 @@
         "emptyMsg": "点击单品上的心形图标，即可保存至此以便日后查看。",
         "moveToBag": "移入购物袋",
         "browse": "浏览系列"
+      },
+      "orders": {
+        "title": "订单记录",
+        "emptyTitle": "暂无订单",
+        "emptyMsg": "下单后，您的历史购买记录将显示在此处。",
+        "browse": "开始购物",
+        "signInTitle": "登录以查看您的订单",
+        "signInMsg": "登录后即可查看您的历史购买记录与订单状态。",
+        "signIn": "登录",
+        "placedOn": "下单日期"
       },
       "checkout": {
         "title": "结账",
@@ -673,6 +713,16 @@
         "moveToBag": "Mover a la Bolsa",
         "browse": "Explorar la Colección"
       },
+      "orders": {
+        "title": "Historial de Pedidos",
+        "emptyTitle": "Aún no hay pedidos",
+        "emptyMsg": "Tus compras anteriores aparecerán aquí una vez que realices un pedido.",
+        "browse": "Empezar a Comprar",
+        "signInTitle": "Inicia sesión para ver tus pedidos",
+        "signInMsg": "Sigue tus compras anteriores y el estado de tus pedidos una vez que hayas iniciado sesión.",
+        "signIn": "Iniciar Sesión",
+        "placedOn": "Realizado el"
+      },
       "checkout": {
         "title": "Pago",
         "contact": "Contacto",
@@ -818,6 +868,16 @@
         "emptyMsg": "Tocca il cuore su un capo per salvarlo qui per dopo.",
         "moveToBag": "Sposta nella Borsa",
         "browse": "Sfoglia la Collezione"
+      },
+      "orders": {
+        "title": "Storico Ordini",
+        "emptyTitle": "Nessun ordine ancora",
+        "emptyMsg": "I tuoi acquisti precedenti appariranno qui non appena effettuerai un ordine.",
+        "browse": "Inizia a Fare Shopping",
+        "signInTitle": "Accedi per vedere i tuoi ordini",
+        "signInMsg": "Segui i tuoi acquisti precedenti e lo stato degli ordini una volta effettuato l'accesso.",
+        "signIn": "Accedi",
+        "placedOn": "Ordinato il"
       },
       "checkout": {
         "title": "Checkout",
